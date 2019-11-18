@@ -1,32 +1,88 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>芝华士调和不平凡</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="format-detection" content="email=no" />
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
-<link rel="stylesheet" type="text/css" href="css/common.css" />
-<script src="js/base/base.js"></script>
-<script>
-ibase.init();
-ibase.load('css/index.css');//无缓存加载文件
-</script>
+    <title>芝华士调和不平凡</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <script src="js/base/base.js"></script>
+    <script>
+        ibase.init();
+        ibase.load('css/index.css');//无缓存加载文件
+    </script>
 </head>
+
 <body>
-<!--------------------------------------------------------------html区域-------------------------------------------------------------------------------------------->
-<article style="display: none;">
-	
-</article>
-<!--------------------------------------------------------------javascript区域-------------------------------------------------------------------------------------->
-<script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
-<script src="js/base/jquery.js"></script>
-<script src="js/base/framwork.js"></script>
-<script src="js/base/monitor.js"></script>
-<script src="js/base/wxUser.js"></script>
-<script>ibase.load('js/index.js');</script>
+    <!--------------------------------------------------------------html区域-------------------------------------------------------------------------------------------->
+    <article style="display: none;">
+        <section id="animeBox" class="">
+            <img src="images/public/logo.png" class="logo none">
+            <div id="animeBg" class="full"></div>
+            <div class="cont">
+                <div id="cubeBox" class="noPointer"></div>
+                <!-- <div id="cubeBox" style="transform: scale(1,1);" class=""></div> -->
+                <img src="images/animeBox/tips.png" class="tips none">
+                <img src="images/animeBox/word.png" class="word none">
+                <img src="images/public/arrow.png" class="arrow none">
+            </div>
+            <img src="images/public/tips.png" class="reasonTips none">
+        </section>
+
+        <aside id="tipsBox" class="none">
+            <img src="images/public/logo.png" class="logo">
+            <div class="cont">
+                <img src="images/tipsBox/text.png" class="word1">
+                <img src="images/tipsBox/tip1.png" class="word2">
+                <div class="selectBox">
+                    <div class="chose" data-val="no">否</div>
+                    <div class="chose" data-val="yes">是</div>
+                </div>
+                <div class="readBox">
+                    <img src="images/tipsBox/read.png" class="full">
+                    <div class="readBtn"></div>
+                    <div class="privacyBtn"></div>
+                </div>
+                <div class="okBtn">
+                    <img src="images/tipsBox/btn.png" class="full">
+                </div>
+            </div>
+            <img src="images/public/tips.png" class="reasonTips">
+        </aside>
+
+        <aside id="privacyBox" class="none">
+            <div class="cont">
+                <div class="content" id="ruleScroll">
+                    <div class="scrollBox">
+                    </div>
+                </div>
+                <div class="readBtn">
+                    <img src="images/tipsBox/agree.png" class="full">
+                </div>
+            </div>
+        </aside>
+    </article>
+    <!--------------------------------------------------------------javascript区域-------------------------------------------------------------------------------------->
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+    <script src="js/base/jquery.js"></script>
+    <script src="js/base/framwork.js"></script>
+    <script src="js/base/monitor.js"></script>
+    <script src="js/base/wxUser.js"></script>
+    <script src="js/plugs/iscroll.js"></script>
+    <script src="js/plugs/annieCore.min.js"></script>
+    <script src="js/plugs/jquery.vp.js"></script>
+    <script src="js/plugs/threejs/three.js"></script>
+    <script src="js/plugs/threejs/controls/OrbitControls.js"></script>
+    <script src="js/plugs/threejs/inflate.min.js"></script>
+    <script src="js/plugs/threejs/loaders/FBXLoader.js"></script>
+    <script src="js/plugs/ThreeDmodel.js"></script>
+    <script>ibase.load('js/index.js');</script>
 </body>
+
 </html>

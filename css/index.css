@@ -38,8 +38,38 @@ aside{
     z-index: 19;
     background-color: rgba(0,0,0,0.85);
 }
+.full{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.arrow{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0.62rem;
+	margin-left: -0.31rem;
+	-webkit-animation: arrowing 1.5s ease infinite;
+}
+.logo{
+	position: absolute;
+	top: 0.9rem;
+	left: 50%;
+	width: 3.17rem;
+	margin-left: -1.58rem;
+	z-index: 3;
+}
+.reasonTips{
+	position: absolute;
+	bottom: 0.3rem;
+	left: 0.37rem;
+	width: 1.47rem;
+	z-index: 3;
+}
 img{
-	/* pointer-events: none; */
+	pointer-events: none;
 }
 /* public end */
 
@@ -51,8 +81,186 @@ img{
 	50%{opacity: 1;}
 	100%{opacity: 0.3;}
 }
+
+.scaleing{
+	-webkit-animation: scaleing 1s linear forwards;
+}
+@-webkit-keyframes scaleing{
+	0%{transform: scale(0,0);}
+	100%{transform: scale(1,1);}
+}
+
+@-webkit-keyframes arrowing{
+	0%{transform: translate(0,0);}
+	50%{transform: translate(0,0.2rem);}
+	100%{transform: translate(0,0);}
+}
 /* anime end */
 
+#tipsBox{
+	background: url(../images/tipsBox/bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+#tipsBox .cont{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 7.5rem;
+	height: 8rem;
+	margin-top: -3.5rem;
+	text-align: center;
+}
+#tipsBox .cont .word1{
+	width: 5.37rem;
+	margin-bottom: 1.2rem;
+}
+#tipsBox .cont .word2{
+	width: 2.7rem;
+	margin-bottom: 0.2rem;
+}
+#tipsBox .cont .selectBox{
+	width: 3rem;
+	height: 0.85rem;
+	margin: 0 auto 1.7rem;
+}
+#tipsBox .cont .selectBox .chose{
+	float: right;
+	width: 1.27rem;
+	height: 0.85rem;
+	text-align: center;
+    line-height: 0.85rem;
+    font-size: 0.32rem;
+	color: white;
+	cursor: pointer;
+	background-image: url(../images/tipsBox/border1.png);
+}
+#tipsBox .cont .selectBox .chose.active{
+	background-image: url(../images/tipsBox/border2.png);
+}
+#tipsBox .cont .selectBox .chose:first-child{
+	float: left;
+}
+#tipsBox .cont .readBox{
+	width: 4.6rem;
+	height: 0.2rem;
+	margin: 0 auto;
+}
+#tipsBox .cont .readBox .readBtn{
+	float: left;
+	width: 1.8rem;
+	height: 100%;
+}
+#tipsBox .cont .readBox .readBtn:before{
+	content: "";
+	position: absolute;
+	display: block;
+	left: -0.3rem;
+	top: 0;
+	width: 0.2rem;
+	height: 0.2rem;
+	border: 1px solid #fff;
+}
+#tipsBox .cont .readBox .readBtn.active:before{
+	background-color: #fff;
+}
+#tipsBox .cont .readBox .privacyBtn{
+	float: right;
+	width: 2.71rem;
+    height: 0.32rem;
+    border-bottom: 1px solid white;
+}
+#tipsBox .cont .okBtn{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -1.635rem;
+	width: 3.27rem;
+	height: 0.54rem;
+}
+/* tipsBox end */
+
+#privacyBox .cont{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 6.48rem;
+	height: 8.71rem;
+	transform: translate(-50%, -50%);
+	background-image: url(../images/tipsBox/close_bg.png);
+}
+#privacyBox .cont .readBtn{
+	position: absolute;
+	bottom: 0.2rem;
+	left: 50%;
+	width: 4.09rem;
+    height: 0.54rem;
+    margin-left: -2.045rem;
+}
+#privacyBox .cont .content{
+	position: absolute;
+	top: 6%;
+	left: 5%;
+	width: 91%;
+	height: 80%;
+	overflow: hidden;
+}
+#privacyBox .cont .content .scrollBox{
+	width: 100%;
+	height: auto;
+}
+#privacyBox .cont .content p.title {
+    color: #fff;
+    font-weight: bold;
+    font-size: .3rem;
+    text-align: left;
+}
+#privacyBox .cont .content p {
+    color: #fff;
+    font-size: .24rem;
+	margin-bottom: .26rem;
+	line-height: 0.4rem;
+	text-align: justify;
+}
+/* privacyBox end */
+
+#animeBox{
+	background: url(../images/animeBox/bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;	
+}
+#animeBox .cont{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 7.5rem;
+	height: 9.8rem;
+	margin-top: -4.4rem;
+}
+#cubeBox{
+	position: absolute;
+	top: -1rem;
+	left: 0;
+	width: 7.5rem;
+	height: 8rem;
+	transform: scale(0,0);
+}
+#animeBox .tips{
+	position: absolute;
+	top: 1.7rem;
+	left: 50%;
+	width: 6.77rem;
+	height: 4.04rem;
+	margin-left: -3.38rem;
+}
+#animeBox .word{
+	position: absolute;
+	bottom: 0.67rem;
+	left: 50%;
+	width: 5.44rem;
+	margin-left: -2.72rem;
+}
+/* animeBox end */
 /*---------------------------------------- 15:9 ----------------------*/
 
 /*---------------------------------------- 18:9 ----------------------*/
