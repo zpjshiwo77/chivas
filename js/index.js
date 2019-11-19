@@ -4,7 +4,8 @@ $(document).ready(function () {
 	var loadBox = $('aside.loadBox');
 	var articleBox = $('article');
 	var windowScale = window.innerWidth / 750;
-	loadBox.show();
+	var loadPer = $("#loadingBox .per");
+	var loadWord = $("#loadingBox p");
 
 	//----------------------------------------页面初始化----------------------------------------
 	icom.init(init);//初始化
@@ -22,6 +23,19 @@ $(document).ready(function () {
 
 	//----------------------------------------加载页面图片----------------------------------------
 	function load_handler() {
+		var loader = new PxLoader();
+		loader.addImage('images/loadingBox/bg.jpg');
+		loader.addImage('images/loadingBox/logo.png');
+
+		loader.addCompletionListener(function () {
+			icom.fadeIn(articleBox);
+			load_more();
+			loader = null;
+		});
+		loader.start();
+	}//end func
+
+	function load_more() {
 		var loader = new PxLoader();
 		loader.addImage('images/share.jpg');
 		loader.addImage('images/wineBox/bg.jpg');
@@ -125,16 +139,16 @@ $(document).ready(function () {
 		}
 
 		//实际加载进度
-		//		loader.addProgressListener(function(e) {
-		//			var per=Math.round(e.completedCount/e.totalCount*50);
-		//			loadPer.html(per+'%');
-		//		});
+		loader.addProgressListener(function(e) {
+			var per=Math.round(e.completedCount/e.totalCount*50);
+			loadPer.css({width:per+'%'});
+			loadWord.html(per+'%');
+		});
 
 		loader.addCompletionListener(function () {
-			icom.fadeIn(articleBox);
 			loadBox.hide();
-			pageInit();
-			//			load_timer(50);//模拟加载进度
+			// pageInit();
+			load_timer(50);//模拟加载进度
 			loader = null;
 		});
 		loader.start();
@@ -145,7 +159,8 @@ $(document).ready(function () {
 		per = per || 0;
 		per += imath.randomRange(1, 3);
 		per = per > 100 ? 100 : per;
-		loadPer.html(per + '%');
+		loadPer.css({width:per+'%'});
+		loadWord.html(per+'%');
 		if (per == 100) setTimeout(pageInit, 200);
 		else setTimeout(load_timer, 33, per);
 	}//edn func
@@ -186,6 +201,9 @@ $(document).ready(function () {
 		eventInit();
 		// DevelopTest();
 		monitor_handler();
+
+		animeBox.show();
+		icom.fadeOut($("#loadingBox"));
 		privacyInit();
 		animeBgInit();
 		modelInit();
