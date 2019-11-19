@@ -1,51 +1,61 @@
 /* ---------------------------------------- 默认css针对16:9标准比例屏幕微信----------------------------------------*/
-html,body,article{
+
+html, body, article {
 	position: fixed;
 	padding: 0;
 	margin: 0;
 	height: 100%!important;
-    width: 100%;
+	width: 100%;
 	overflow: hidden;
-	-webkit-text-size-adjust:100%!important;
+	-webkit-text-size-adjust: 100%!important;
+	background-color:rgb(57,35,120);
 }
-.none{
+
+.none {
 	display: none;
 }
-.hide{
+
+.hide {
 	opacity: 0;
 }
-a{
+
+a {
 	cursor: pointer;
 }
-a, a:visited{
+
+a, a:visited {
 	color: #fff;
 }
-section{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: fixed;
-    top:0;
-    left: 0;
-    z-index: 3;
-}
-aside{
+
+section {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 	position: fixed;
-	top:0;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+aside {
+	position: fixed;
+	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-    z-index: 19;
-    background-color: rgba(0,0,0,0.85);
+	z-index: 19;
+	background-color: rgba(0, 0, 0, 0.85);
 }
-.full{
+
+.full {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 }
-.arrow{
+
+.arrow {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
@@ -53,7 +63,8 @@ aside{
 	margin-left: -0.31rem;
 	-webkit-animation: arrowing 1.5s ease infinite;
 }
-.logo{
+
+.logo {
 	position: absolute;
 	top: 0.9rem;
 	left: 50%;
@@ -61,48 +72,28 @@ aside{
 	margin-left: -1.58rem;
 	z-index: 3;
 }
-.reasonTips{
+
+.reasonTips {
 	position: absolute;
 	bottom: 0.3rem;
 	left: 0.37rem;
 	width: 1.47rem;
 	z-index: 3;
 }
-img{
+
+img {
 	pointer-events: none;
 }
+
 /* public end */
 
-.lighting{
-	-webkit-animation: lighting 3s ease infinite;
-}
-@-webkit-keyframes lighting{
-	0%{opacity: 0.3;}
-	50%{opacity: 1;}
-	100%{opacity: 0.3;}
-}
-
-.scaleing{
-	-webkit-animation: scaleing 1s linear forwards;
-}
-@-webkit-keyframes scaleing{
-	0%{transform: scale(0,0);}
-	100%{transform: scale(1,1);}
-}
-
-@-webkit-keyframes arrowing{
-	0%{transform: translate(0,0);}
-	50%{transform: translate(0,0.2rem);}
-	100%{transform: translate(0,0);}
-}
-/* anime end */
-
-#tipsBox{
+#tipsBox {
 	background: url(../images/tipsBox/bg.jpg) no-repeat;
 	background-size: cover;
 	background-position: center;
 }
-#tipsBox .cont{
+
+#tipsBox .cont {
 	position: absolute;
 	top: 50%;
 	left: 0;
@@ -111,47 +102,56 @@ img{
 	margin-top: -3.5rem;
 	text-align: center;
 }
-#tipsBox .cont .word1{
+
+#tipsBox .cont .word1 {
 	width: 5.37rem;
 	margin-bottom: 1.2rem;
 }
-#tipsBox .cont .word2{
+
+#tipsBox .cont .word2 {
 	width: 2.7rem;
 	margin-bottom: 0.2rem;
 }
-#tipsBox .cont .selectBox{
+
+#tipsBox .cont .selectBox {
 	width: 3rem;
 	height: 0.85rem;
 	margin: 0 auto 1.7rem;
 }
-#tipsBox .cont .selectBox .chose{
+
+#tipsBox .cont .selectBox .chose {
 	float: right;
 	width: 1.27rem;
 	height: 0.85rem;
 	text-align: center;
-    line-height: 0.85rem;
-    font-size: 0.32rem;
+	line-height: 0.85rem;
+	font-size: 0.32rem;
 	color: white;
 	cursor: pointer;
 	background-image: url(../images/tipsBox/border1.png);
 }
-#tipsBox .cont .selectBox .chose.active{
+
+#tipsBox .cont .selectBox .chose.active {
 	background-image: url(../images/tipsBox/border2.png);
 }
-#tipsBox .cont .selectBox .chose:first-child{
+
+#tipsBox .cont .selectBox .chose:first-child {
 	float: left;
 }
-#tipsBox .cont .readBox{
+
+#tipsBox .cont .readBox {
 	width: 4.6rem;
 	height: 0.2rem;
 	margin: 0 auto;
 }
-#tipsBox .cont .readBox .readBtn{
+
+#tipsBox .cont .readBox .readBtn {
 	float: left;
 	width: 1.8rem;
 	height: 100%;
 }
-#tipsBox .cont .readBox .readBtn:before{
+
+#tipsBox .cont .readBox .readBtn:before {
 	content: "";
 	position: absolute;
 	display: block;
@@ -161,16 +161,19 @@ img{
 	height: 0.2rem;
 	border: 1px solid #fff;
 }
-#tipsBox .cont .readBox .readBtn.active:before{
+
+#tipsBox .cont .readBox .readBtn.active:before {
 	background-color: #fff;
 }
-#tipsBox .cont .readBox .privacyBtn{
+
+#tipsBox .cont .readBox .privacyBtn {
 	float: right;
 	width: 2.71rem;
-    height: 0.32rem;
-    border-bottom: 1px solid white;
+	height: 0.32rem;
+	border-bottom: 1px solid white;
 }
-#tipsBox .cont .okBtn{
+
+#tipsBox .cont .okBtn {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
@@ -178,9 +181,10 @@ img{
 	width: 3.27rem;
 	height: 0.54rem;
 }
+
 /* tipsBox end */
 
-#privacyBox .cont{
+#privacyBox .cont {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -189,15 +193,17 @@ img{
 	transform: translate(-50%, -50%);
 	background-image: url(../images/tipsBox/close_bg.png);
 }
-#privacyBox .cont .readBtn{
+
+#privacyBox .cont .readBtn {
 	position: absolute;
 	bottom: 0.2rem;
 	left: 50%;
 	width: 4.09rem;
-    height: 0.54rem;
-    margin-left: -2.045rem;
+	height: 0.54rem;
+	margin-left: -2.045rem;
 }
-#privacyBox .cont .content{
+
+#privacyBox .cont .content {
 	position: absolute;
 	top: 6%;
 	left: 5%;
@@ -205,31 +211,36 @@ img{
 	height: 80%;
 	overflow: hidden;
 }
-#privacyBox .cont .content .scrollBox{
+
+#privacyBox .cont .content .scrollBox {
 	width: 100%;
 	height: auto;
 }
+
 #privacyBox .cont .content p.title {
-    color: #fff;
-    font-weight: bold;
-    font-size: .3rem;
-    text-align: left;
+	color: #fff;
+	font-weight: bold;
+	font-size: .3rem;
+	text-align: left;
 }
+
 #privacyBox .cont .content p {
-    color: #fff;
-    font-size: .24rem;
+	color: #fff;
+	font-size: .24rem;
 	margin-bottom: .26rem;
 	line-height: 0.4rem;
 	text-align: justify;
 }
+
 /* privacyBox end */
 
-#animeBox{
+#animeBox {
 	background: url(../images/animeBox/bg.jpg) no-repeat;
 	background-size: cover;
-	background-position: center;	
+	background-position: center;
 }
-#animeBox .cont{
+
+#animeBox .cont {
 	position: absolute;
 	top: 50%;
 	left: 0;
@@ -237,15 +248,17 @@ img{
 	height: 9.8rem;
 	margin-top: -4.4rem;
 }
-#cubeBox{
+
+#cubeBox {
 	position: absolute;
 	top: -1rem;
 	left: 0;
 	width: 7.5rem;
 	height: 8rem;
-	transform: scale(0,0);
+	transform: scale(0, 0);
 }
-#animeBox .tips{
+
+#animeBox .tips {
 	position: absolute;
 	top: 1.7rem;
 	left: 50%;
@@ -253,14 +266,397 @@ img{
 	height: 4.04rem;
 	margin-left: -3.38rem;
 }
-#animeBox .word{
+
+#animeBox .word {
 	position: absolute;
 	bottom: 0.67rem;
 	left: 50%;
 	width: 5.44rem;
 	margin-left: -2.72rem;
 }
-/* animeBox end */
-/*---------------------------------------- 15:9 ----------------------*/
 
+/* animeBox end */
+
+#productBox {
+	background: url(../images/productBox/bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+#productBox .cont {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 7.5rem;
+	height: 9.5rem;
+	margin-top: -4.75rem;
+}
+
+#productBox .cont .tips {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 4.28rem;
+	margin-left: -2.14rem;
+}
+
+#productBox .cont .arL {
+	position: absolute;
+	top: 4rem;
+	left: 0.35rem;
+	width: 0.65rem;
+	height: 0.97rem;
+}
+
+#productBox .cont .arR {
+	position: absolute;
+	top: 4rem;
+	right: 0.35rem;
+	width: 0.65rem;
+	height: 0.97rem;
+}
+
+#productBox .swiperBox {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 7.5rem;
+	height: 12.18rem;
+	margin-top: -6.09rem;
+}
+
+#productBox .swiperBox .item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#productBox .swiperBox .item .title {
+	position: absolute;
+	top: 0.7rem;
+	left: 50%;
+	width: 4.27rem;
+	margin-left: -2.135rem;
+	opacity: 0;
+}
+
+#productBox .swiperBox .item .pro {
+	position: absolute;
+	top: 0;
+	left: 0.06rem;
+	width: 7.38rem;
+}
+
+#productBox .swiperBox .item .point {
+	position: absolute;
+	top: 6.65rem;
+	left: 50%;
+	width: 0.54rem;
+	margin-left: 0.1rem;
+}
+
+#productBox .swiperBox .item.act .point {
+	display: none;
+}
+
+#productBox .swiperBox .item.act .title {
+	opacity: 1;
+}
+
+/* productBox end */
+
+#videoBox .bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 7.5rem;
+}
+
+#videoBox .maskBox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 7.5rem;
+	height: 7.63rem;
+}
+
+#videoBox .maskBox.red {
+	-webkit-mask: url(../images/videoBox/mask_red.png);
+	-webkit-mask-size: 100% 100%;
+}
+
+#videoBox .maskBox.black {
+	-webkit-mask: url(../images/videoBox/mask_black.png);
+	-webkit-mask-size: 100% 100%;
+}
+
+#videoBox .maskBox.silver {
+	-webkit-mask: url(../images/videoBox/mask_silver.png);
+	-webkit-mask-size: 100% 100%;
+}
+
+#videoBox .pattern {
+	position: absolute;
+	top: 4.86rem;
+	left: 0;
+	width: 2.66rem;
+	height: 4.92rem;
+}
+
+#videoBox .close {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1.33rem;
+	height: 1.33rem;
+	transform: translate(-50%, 2rem);
+}
+
+#videoBox #videoVpBox {
+	position: absolute;
+	top: 2.1rem;
+	left: 0;
+	width: 7.5rem;
+	height: 4.22rem;
+	background-color: black;
+}
+#videoBox .dot {
+	position: absolute;
+	top: 4.7rem;
+	left: 1.38rem;
+	width: 4.74rem;
+	height: 0.21rem;
+	background: url(../images/videoBox/dot.png) 0 0;
+	background-size: 4.74rem 0.42rem;
+	animation: ani_dot 1s steps(2) infinite;
+}
+@keyframes ani_dot {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0 -0.42rem;
+	}
+}
+
+#videoBox .wordBox{
+	position: absolute;
+	top: 5.3rem;
+	left: 50%;
+	width: 5.25rem;
+	height: 1rem;
+	margin-left: -2.625rem;
+}
+#videoBox .wordBox .word{
+	position: absolute;
+	left: 0;
+	width: 100%;
+}
+#videoBox .wordBox .word1{
+	top: 0;
+}
+#videoBox .wordBox .word2{
+	top: 0.7rem;
+}
+#videoBox .wordBox .word3{
+	top: 1.4rem;
+}
+#videoBox .wordBox .word4,#videoBox .wordBox .word6{
+	top: 0.6rem;
+}
+#videoBox .wordBox .word5,#videoBox .wordBox .word7{
+	top: 1.4rem;
+}
+/* videoBox end */
+
+#moreBox{
+	background: url(../images/moreBox/bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+#moreBox .cont{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 6.6rem;
+	margin-top: -1.3rem;
+}
+#moreBox .letter {
+	position: absolute;
+	top: 0;
+	left: 0.95rem;
+	width: 5.6rem;
+	height: 2.36rem;
+	background: url(../images/moreBox/letter.png) 0 0;
+	background-size: 5.6rem 14.16rem;
+	animation: lettering 1.2s steps(5) forwards;
+}
+@keyframes lettering {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0 -11.8rem;
+	}
+}
+#moreBox .word1{
+	position: absolute;
+	top: 2.6rem;
+	left: 50%;
+	width: 5.49rem;
+	margin-left: -2.75rem;
+}
+#moreBox .word{
+	position: absolute;
+	top: 3.8rem;
+	left: 50%;
+	width: 5.45rem;
+	margin-left: -2.725rem;
+}
+#moreBox .btn{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 3.99rem;
+	height: 0.54rem;
+	margin-left: -2rem;
+}
+/* moreBox end */
+
+#peopleBox{
+	background: url(../images/peopleBox/bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+#peopleBox .word{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 5.84rem;
+	height: 3.67rem;
+	transform: translate(-2.92rem, 2.3rem);
+}
+#peopleBox .btn{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 2.2rem;
+	height: 1.4rem;
+	transform: translate(-1.1rem, 4.7rem);
+}
+/* peopleBox end */
+
+#wineBox{
+	background: url(../images/wineBox/bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+#wineBox .cont{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 9.65rem;
+	margin-top: -3.5rem;
+}
+#wineBox .wine {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 3.1rem;
+	height: 9.65rem;
+	margin-left: -1.55rem;
+	background: url(../images/wineBox/wine.png) 0 0;
+	background-size: 18.6rem 9.65rem;
+	animation: wineing 0.5s 2s steps(5) forwards;
+}
+@keyframes wineing {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: -15.5rem 0;
+	}
+}
+#wineBox .word{
+	position: absolute;
+	top: 4.2rem;
+	left: 50%;
+	width: 2.12rem;
+	margin-left: -1.06rem;
+	animation: showing 1.5s 0.5s ease forwards;
+	opacity: 0;
+}
+@keyframes showing {
+	0%{opacity: 0;}
+	50%{opacity: 1;}
+	80%{opacity: 1;}
+	100%{opacity: 0;}
+}
+#wineBox .btn{
+	position: absolute;
+	top: 8.4rem;
+	left: 50%;
+	width: 2.56rem;
+	height: 0.54rem;
+	margin-left: -1.28rem;
+}
+/* wineBox end */
+
+#introBox{
+	background: url(../images/introBox/bg.jpg) no-repeat;
+	background-size: cover;
+	background-position: top center;
+}
+#introBox .cont{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 7.5rem;
+	height: 9.3rem;
+	margin-top: -4.65rem;
+}
+#introBox .cont .videoBox{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 7.5rem;
+	height: 4.33rem;
+}
+#introBox .dot {
+	position: absolute;
+	top: 5.3rem;
+	left: 1.38rem;
+	width: 4.74rem;
+	height: 0.21rem;
+	background: url(../images/videoBox/dot.png) 0 0;
+	background-size: 4.74rem 0.42rem;
+	animation: ani_dot 1s steps(2) infinite;
+}
+#introBox .word {
+	position: absolute;
+	top: 6.1rem;
+	left: 50%;
+	width: 5.15rem;
+	margin-left: -2.575rem;
+}
+#introBox .btn {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 3.57rem;
+	height: 0.54rem;
+	margin-left: -1.785rem;
+}
+/* introBox end */
+/*---------------------------------------- 15:9 ----------------------*/
+.screen159 #peopleBox .word{
+	transform: translate(-2.92rem, 2rem) scale(0.8,0.8);
+}
+.screen159 #peopleBox .btn{
+	transform: translate(-1.1rem, 4.1rem);
+}
 /*---------------------------------------- 18:9 ----------------------*/

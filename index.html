@@ -16,12 +16,88 @@
     <script>
         ibase.init();
         ibase.load('css/index.css');//无缓存加载文件
+        ibase.load('css/anime.css');//无缓存加载文件
     </script>
 </head>
 
 <body>
     <!--------------------------------------------------------------html区域-------------------------------------------------------------------------------------------->
     <article style="display: none;">
+
+        <section id="introBox" class="none">
+            <div class="cont">
+                <div class="videoBox">
+                    <video id="myVideo" class="full none" playsinline="true" webkit-playsinline="true"
+                        x-webkit-airplay="allow" src="video/1.mp4" controls>
+                    </video>
+                    <img src="images/introBox/cover.jpg" class="full cover">
+                </div>
+                <div class="dot"></div>
+                <img src="images/introBox/word.png" class="word">
+                <div class="btn">
+                    <img src="images/introBox/btn.png" class="full">
+                </div>
+            </div>
+        </section>
+
+        <section id="wineBox" class="none">
+            <div class="cont">
+                <div class="wine"></div>
+                <img src="images/wineBox/word.png" class="word">
+                <div class="btn">
+                    <img src="images/wineBox/btn.png" class="full">
+                </div>
+            </div>
+        </section>
+
+        <section id="peopleBox" class="none">
+            <div id="peopleAnime" class="full"></div>
+            <img src="images/peopleBox/word.png" class="word">
+            <div class="btn"></div>
+        </section>
+
+        <section id="moreBox" class="none">
+            <div class="cont">
+                <div class="letter"></div>
+                <img src="images/moreBox/word1.png" class="hide word1 moreing1">
+                <img src="images/moreBox/w1.png" class="hide word  word2 moreing2">
+                <img src="images/moreBox/w2.png" class="hide word  word3 moreing3">
+                <img src="images/moreBox/w3.png" class="hide word  word4 moreing4">
+                <div class="btn">
+                    <img src="images/moreBox/btn.png" class="full">
+                </div>
+            </div>
+        </section>
+
+        <section id="productBox" class="none">
+            <div class="cont">
+                <div class="swiperBox">
+                    <div class="item" data-val="red">
+                        <img src="images/productBox/r.png" class="title">
+                        <img src="images/productBox/r1.png" class="pro">
+                        <img src="images/productBox/point.png" class="point lighting">
+                    </div>
+                    <div class="item none" data-val="silver">
+                        <img src="images/productBox/s.png" class="title">
+                        <img src="images/productBox/s1.png" class="pro">
+                        <img src="images/productBox/point.png" class="point lighting">
+                    </div>
+                    <div class="item none" data-val="black">
+                        <img src="images/productBox/b.png" class="title">
+                        <img src="images/productBox/b1.png" class="pro">
+                        <img src="images/productBox/point.png" class="point lighting">
+                    </div>
+                </div>
+                <div class="arL arling">
+                    <img src="images/productBox/arl.png" class="full">
+                </div>
+                <div class="arR arring">
+                    <img src="images/productBox/arr.png" class="full">
+                </div>
+                <img src="images/productBox/tips.png" class="tips">
+            </div>
+        </section>
+
         <section id="animeBox" class="">
             <img src="images/public/logo.png" class="logo none">
             <div id="animeBg" class="full"></div>
@@ -30,7 +106,7 @@
                 <!-- <div id="cubeBox" style="transform: scale(1,1);" class=""></div> -->
                 <img src="images/animeBox/tips.png" class="tips none">
                 <img src="images/animeBox/word.png" class="word none">
-                <img src="images/public/arrow.png" class="arrow none">
+                <!-- <img src="images/public/arrow.png" class="arrow none"> -->
             </div>
             <img src="images/public/tips.png" class="reasonTips none">
         </section>
@@ -66,6 +142,19 @@
                     <img src="images/tipsBox/agree.png" class="full">
                 </div>
             </div>
+        </aside>
+
+        <aside id="videoBox" class="none">
+            <img src="images/videoBox/red.jpg" class="bg">
+            <div class="maskBox red">
+                <div id="videoVpBox"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="wordBox"></div>
+            <img src="images/videoBox/sp.png" class="pattern none">
+            <a class="close">
+                <img src="images/videoBox/close.png" class="full">
+            </a>
         </aside>
     </article>
     <!--------------------------------------------------------------javascript区域-------------------------------------------------------------------------------------->

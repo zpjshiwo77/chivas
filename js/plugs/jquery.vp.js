@@ -546,7 +546,7 @@
     frameView.FrameView.prototype._end = function () {
         var s = this;
         s.clearTime();
-        if (s.options.loop) {
+        if (s.options.loop && !s.isDestroy) {
             s.index = 0;
             s.isPlay = false;
             s.play();

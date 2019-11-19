@@ -88,6 +88,7 @@ var ThreeDmodel = function () {
 			premultipliedAlpha: false,		//?
 			preserveDrawingBuffer: false,	//是否保存绘图缓冲
 			stencil: true,
+    		alpha:true
 		}
 		renderer = new THREE.WebGLRenderer(options);
 		renderer.setSize(box.width(), box.height());
