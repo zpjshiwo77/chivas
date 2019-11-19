@@ -140,8 +140,8 @@
 }
 
 @-webkit-keyframes wording6 {
-	0% {transform: translate(-7.5rem,0);}
-	60% {transform: translate(-7.5rem,0);}
+	0% {transform: translate(7.5rem,0);}
+	60% {transform: translate(7.5rem,0);}
 	70% {transform: translate(0,0);}
 	100% {transform: translate(0,0);}
 	/* 100% {transform: translate(-7.5rem,0);} */
@@ -152,8 +152,8 @@
 }
 
 @-webkit-keyframes wording7 {
-	0% {transform: translate(7.5rem,0);}
-	60% {transform: translate(7.5rem,0);}
+	0% {transform: translate(-7.5rem,0);}
+	60% {transform: translate(-7.5rem,0);}
 	70% {transform: translate(0,0);}
 	100% {transform: translate(0,0);}
 	/* 100% {transform: translate(7.5rem,0);} */

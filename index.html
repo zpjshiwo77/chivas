@@ -28,7 +28,7 @@
             <div class="cont">
                 <div class="videoBox">
                     <video id="myVideo" class="full none" playsinline="true" webkit-playsinline="true"
-                        x-webkit-airplay="allow" src="video/1.mp4" controls>
+                        poster="images/introBox/cover2.jpg" x-webkit-airplay="allow" src="video/1.mp4" controls>
                     </video>
                     <img src="images/introBox/cover.jpg" class="full cover">
                 </div>
@@ -38,22 +38,25 @@
                     <img src="images/introBox/btn.png" class="full">
                 </div>
             </div>
+            <img src="images/public/tips.png" class="reasonTips">
         </section>
 
         <section id="wineBox" class="none">
             <div class="cont">
                 <div class="wine"></div>
-                <img src="images/wineBox/word.png" class="word">
-                <div class="btn">
+                <img src="images/wineBox/word.png" class="word lighting">
+                <div class="btn none">
                     <img src="images/wineBox/btn.png" class="full">
                 </div>
             </div>
+            <img src="images/public/tips.png" class="reasonTips">
         </section>
 
         <section id="peopleBox" class="none">
             <div id="peopleAnime" class="full"></div>
             <img src="images/peopleBox/word.png" class="word">
             <div class="btn"></div>
+            <img src="images/public/tips.png" class="reasonTips">
         </section>
 
         <section id="moreBox" class="none">
@@ -67,6 +70,7 @@
                     <img src="images/moreBox/btn.png" class="full">
                 </div>
             </div>
+            <img src="images/public/tips.png" class="reasonTips">
         </section>
 
         <section id="productBox" class="none">
@@ -76,16 +80,19 @@
                         <img src="images/productBox/r.png" class="title">
                         <img src="images/productBox/r1.png" class="pro">
                         <img src="images/productBox/point.png" class="point lighting">
-                    </div>
-                    <div class="item none" data-val="silver">
-                        <img src="images/productBox/s.png" class="title">
-                        <img src="images/productBox/s1.png" class="pro">
-                        <img src="images/productBox/point.png" class="point lighting">
+                        <div class="itemClick"></div>
                     </div>
                     <div class="item none" data-val="black">
                         <img src="images/productBox/b.png" class="title">
                         <img src="images/productBox/b1.png" class="pro">
                         <img src="images/productBox/point.png" class="point lighting">
+                        <div class="itemClick"></div>
+                    </div>
+                    <div class="item none" data-val="silver">
+                        <img src="images/productBox/s.png" class="title">
+                        <img src="images/productBox/s1.png" class="pro">
+                        <img src="images/productBox/point.png" class="point lighting">
+                        <div class="itemClick"></div>
                     </div>
                 </div>
                 <div class="arL arling">
@@ -94,8 +101,14 @@
                 <div class="arR arring">
                     <img src="images/productBox/arr.png" class="full">
                 </div>
+                <div class="tipsBox">
+                    <img src="images/videoBox/red.png" class="tips_red">
+                    <img src="images/videoBox/silver.png" class="tips_silver">
+                    <img src="images/videoBox/black.png" class="tips_black">
+                </div>
                 <img src="images/productBox/tips.png" class="tips">
             </div>
+            <img src="images/public/tips.png" class="reasonTips">
         </section>
 
         <section id="animeBox" class="none">
@@ -121,6 +134,7 @@
                     <p>0%</p>
                 </div>
             </div>
+            <img src="images/public/tips.png" class="reasonTips">
         </section>
 
         <aside id="tipsBox" class="none">
@@ -154,6 +168,7 @@
                     <img src="images/tipsBox/agree.png" class="full">
                 </div>
             </div>
+            <img src="images/public/tips.png" class="reasonTips">
         </aside>
 
         <aside id="videoBox" class="none">
@@ -162,11 +177,12 @@
                 <div id="videoVpBox"></div>
                 <div class="dot"></div>
             </div>
-            <div class="wordBox"></div>
             <img src="images/videoBox/sp.png" class="pattern none">
+            <div class="wordBox"></div>
             <a class="close">
                 <img src="images/videoBox/close.png" class="full">
             </a>
+            <img src="images/public/tips.png" class="reasonTips">
         </aside>
     </article>
     <!--------------------------------------------------------------javascript区域-------------------------------------------------------------------------------------->
@@ -174,6 +190,7 @@
     <script src="js/base/jquery.js"></script>
     <script src="js/base/framwork.js"></script>
     <script src="js/base/monitor.js"></script>
+    <script src="js/base/audio.js"></script>
     <script src="js/base/wxUser.js"></script>
     <script src="js/plugs/iscroll.js"></script>
     <script src="js/plugs/annieCore.min.js"></script>

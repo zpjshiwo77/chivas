@@ -6,6 +6,7 @@ $(document).ready(function () {
 	var windowScale = window.innerWidth / 750;
 	var loadPer = $("#loadingBox .per");
 	var loadWord = $("#loadingBox p");
+	var Voice;
 
 	//----------------------------------------页面初始化----------------------------------------
 	icom.init(init);//初始化
@@ -14,11 +15,40 @@ $(document).ready(function () {
 	function init() {
 		requestAnimationFrame(function () {
 			if (os.screenProp < 0.54) articleBox.addClass("screen189");
-			if (os.screenProp > 0.64) articleBox.addClass("screen159");
+			if (os.screenProp > 0.62) articleBox.addClass("screen159");
 			load_handler();
+			sound_handler();
 		});
 		wxUser.init();
 	}//edn func
+
+	function sound_handler() {
+		if (os.weixin) {
+			var wsb = window;
+			if (wsb.WeixinJSBridge) {
+				try {
+					wsb.WeixinJSBridge.invoke("getNetworkType", {}, sound_creat);
+				}
+				catch (e) {
+					wx.ready(sound_creat);
+				}
+			}
+			else {
+				document.addEventListener("WeixinJSBridgeReady", sound_creat, false);
+			}
+		} else {
+			sound_creat();
+		}
+	}//edn func
+
+	function sound_creat() {
+		document.removeEventListener("WeixinJSBridgeReady", sound_creat);
+		Voice = iaudio.on([{
+			src: "audio/anime.mp3",
+			autoplay: false,
+			loop: 0
+		}]);
+	}//end func
 
 
 	//----------------------------------------加载页面图片----------------------------------------
@@ -69,6 +99,10 @@ $(document).ready(function () {
 		loader.addImage('images/videoBox/w_black/w4.png');
 		loader.addImage('images/videoBox/w_black/w5.png');
 		loader.addImage('images/videoBox/w_black/w6.png');
+		loader.addImage('images/videoBox/w_black/w6.png');
+		loader.addImage('images/videoBox/red.png');
+		loader.addImage('images/videoBox/silver.png');
+		loader.addImage('images/videoBox/black.png');
 		loader.addImage('images/tipsBox/agree.png');
 		loader.addImage('images/tipsBox/bg.jpg');
 		loader.addImage('images/tipsBox/border1.png');
@@ -93,16 +127,16 @@ $(document).ready(function () {
 		loader.addImage('images/productBox/s.png');
 		loader.addImage('images/productBox/s1.png');
 		loader.addImage('images/productBox/tips.png');
-		loader.addImage('images/peopleBox/1.png');
-		loader.addImage('images/peopleBox/10.png');
-		loader.addImage('images/peopleBox/2.png');
-		loader.addImage('images/peopleBox/3.png');
-		loader.addImage('images/peopleBox/4.png');
-		loader.addImage('images/peopleBox/5.png');
-		loader.addImage('images/peopleBox/6.png');
-		loader.addImage('images/peopleBox/7.png');
-		loader.addImage('images/peopleBox/8.png');
-		loader.addImage('images/peopleBox/9.png');
+		loader.addImage('images/peopleBox/1.jpg');
+		loader.addImage('images/peopleBox/10.jpg');
+		loader.addImage('images/peopleBox/2.jpg');
+		loader.addImage('images/peopleBox/3.jpg');
+		loader.addImage('images/peopleBox/4.jpg');
+		loader.addImage('images/peopleBox/5.jpg');
+		loader.addImage('images/peopleBox/6.jpg');
+		loader.addImage('images/peopleBox/7.jpg');
+		loader.addImage('images/peopleBox/8.jpg');
+		loader.addImage('images/peopleBox/9.jpg');
 		loader.addImage('images/peopleBox/bg.jpg');
 		loader.addImage('images/peopleBox/word.png');
 		loader.addImage('images/moreBox/bg.jpg');
@@ -199,8 +233,8 @@ $(document).ready(function () {
 	 */
 	function pageInit() {
 		eventInit();
-		// DevelopTest();
-		monitor_handler();
+		DevelopTest();
+		// monitor_handler();
 
 		animeBox.show();
 		icom.fadeOut($("#loadingBox"));
@@ -214,7 +248,7 @@ $(document).ready(function () {
 	 * 开发测试使用
 	 */
 	function DevelopTest() {
-		animeBox.hide();
+		$("#loadingBox").hide();
 		showIntroBox();
 	}
 
@@ -228,18 +262,36 @@ $(document).ready(function () {
 		cubeBox.on('touchstart', this_touchstart);
 		cubeBox.on('click', showProductBox);
 
-		productBox.find(".item").on("click", playVideo);
+		productBox.find(".itemClick").on("click", playVideo);
 
 		moreBox.find(".btn").on("touchend", showPeopleBox);
 
 		peopleBox.find(".btn").on("touchend", showWineBox);
 
 		wineBox.find(".btn").on("touchend", showIntroBox);
+		wineBox.one("touchmove", wineAnime);
 
 		videoBox.find(".close").on("touchend", closeVideoBox);
 
 		introBox.find(".videoBox").one("touchend", playIntroVideo);
 		introBox.find(".btn").one("touchend", jumpOther);
+	}
+
+	/**
+	 * 酒的动画
+	 */
+	function wineAnime(){
+		var wine = wineBox.find(".wine");
+		var word = wineBox.find(".word");
+		var btn = wineBox.find(".btn");
+
+		icom.fadeOut(word,500,function(){
+			wine.addClass("wineing");
+		});
+
+		setTimeout(function(){
+			icom.fadeIn(btn);
+		},500)
 	}
 
 	/**
@@ -269,7 +321,10 @@ $(document).ready(function () {
 		$("#myVideo").show();
 		introBox.find(".videoBox .cover").hide();
 		var video = $("#myVideo")[0];
-		video.play();
+		// video.play();
+		setTimeout(() => {
+			video.play();
+		}, 500);
 	}
 
 	/**
@@ -278,6 +333,7 @@ $(document).ready(function () {
 	function showIntroBox() {
 		introBox.show();
 		icom.fadeOut(wineBox);
+		// if(os.android) introBox.find(".cover").hide();
 	}
 
 	/**
@@ -299,17 +355,19 @@ $(document).ready(function () {
 		peopleAnime.VP({
 			debug: false,
 			autoPlay: true,
-			loop: true,
+			loop: false,
 			total: 10,
 			time: 1.5,
-			type: 'png',
-			poster: "images/peopleBox/1.png",
+			type: 'jpg',
+			poster: "images/peopleBox/1.jpg",
 			path: "images/peopleBox/",
 			onPlay: function () {
 
 			},
 			onEnd: function () {
-
+				setTimeout(function(){
+					peopleAnime.gotoAndPlay(0);
+				},1500);
 			}
 		});
 	}
@@ -340,49 +398,61 @@ $(document).ready(function () {
 	 * 播放视频
 	 */
 	function playVideo() {
-		var that = $(this);
+		var that = $(this).parents(".item");
 		var type = that.attr("data-val");
 		var pattern = videoBox.find(".pattern");
-
-		icom.fadeIn(videoBox, 500, function () {
-			videoBox.removeClass("noPointer");
-			productBox.removeClass("noPointer");
-			var cont = "";
-			for (let i = 0; i < 7; i++) {
-				var index = i + 1;
-				var id = i > 1 ? i : i + 1;
-				cont += '<img src="images/videoBox/w_' + type + '/w' + id + '.png" class="word word' + index + ' wording' + index + '">';
-			}
-			videoBox.find(".wordBox").append(cont);
-		});
+		var tips = productBox.find(".tips_"+type);
+		var time = 0;
 
 		productBox.addClass("noPointer");
 		videoBox.addClass("noPointer");
-		videoBox.find(".bg")[0].src = "images/videoBox/" + type + ".jpg";
-		videoBox.find(".maskBox").removeClass("red black silver").addClass(type);
-		if (type == "silver") pattern.show();
-		else pattern.hide();
 
-		videoVpBox.VP({
-			debug: false,
-			autoPlay: true,
-			loop: false,
-			total: 70,
-			time: 4,
-			type: 'jpg',
-			scaleMode: 'fixedWidth',
-			poster: "images/videoBox/" + type + "/pic1.jpg",
-			path: "images/videoBox/" + type + "/pic",
-			onPlay: function () {
+		if(!tips.hasClass("act")){
+			time = 1500;
+			tips.addClass("act");
+			tips.transition({opacity:1},1000);
+		}
+
+		setTimeout(function(){
+			icom.fadeIn(videoBox, 500, function () {
+				videoBox.removeClass("noPointer");
+				productBox.removeClass("noPointer");
+				var cont = "";
+				for (let i = 0; i < 7; i++) {
+					var index = i + 1;
+					var id = i > 1 ? i : i + 1;
+					cont += '<img src="images/videoBox/w_' + type + '/w' + id + '.png" class="word word' + index + ' wording' + index + '">';
+				}
+				videoBox.find(".wordBox").append(cont);
 				if (!that.hasClass("act")) {
 					that.addClass("act");
 					videoPlayTimes++;
 				}
-			},
-			onEnd: function () {
-				videoVpBox.destroy();
-			}
-		});
+			});
+			
+			videoBox.find(".bg")[0].src = "images/videoBox/" + type + ".jpg";
+			videoBox.find(".maskBox").removeClass("red black silver").addClass(type);
+			if (type == "silver") pattern.show();
+			else pattern.hide();
+	
+			videoVpBox.VP({
+				debug: false,
+				autoPlay: true,
+				loop: false,
+				total: 70,
+				time: 4,
+				type: 'jpg',
+				scaleMode: 'fixedWidth',
+				poster: "images/videoBox/" + type + "/pic1.jpg",
+				path: "images/videoBox/" + type + "/pic",
+				onPlay: function () {
+					
+				},
+				onEnd: function () {
+					videoVpBox.destroy();
+				}
+			});
+		}, time);
 	}
 
 	/**
@@ -492,7 +562,8 @@ $(document).ready(function () {
 				setTimeout(function () {
 					cubeBox.addClass("scaleing");
 					cubeRotate();
-				}, 4000)
+				}, 4000);
+				Voice.anime.play();
 			},
 			onEnd: function () {
 				animeBg.destroy();

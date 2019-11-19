@@ -251,7 +251,7 @@ img {
 
 #cubeBox {
 	position: absolute;
-	top: -1rem;
+	top: -0.7rem;
 	left: 0;
 	width: 7.5rem;
 	height: 8rem;
@@ -260,7 +260,7 @@ img {
 
 #animeBox .tips {
 	position: absolute;
-	top: 1.7rem;
+	top: 1.4rem;
 	left: 50%;
 	width: 6.77rem;
 	height: 4.04rem;
@@ -300,12 +300,28 @@ img {
 	margin-left: -2.14rem;
 }
 
+#productBox .cont .tipsBox {
+	position: absolute;
+	bottom: 1.05rem;
+	left: 50%;
+	width: 4.8rem;
+	height: 0.98rem;
+	margin-left: -2.4rem;
+}
+#productBox .cont .tipsBox img{
+	float: left;
+	width: 0.99rem;
+	margin: 0 0.3rem;
+	opacity: 0.3;
+}
+
 #productBox .cont .arL {
 	position: absolute;
 	top: 4rem;
 	left: 0.35rem;
 	width: 0.65rem;
 	height: 0.97rem;
+	z-index: 9;
 }
 
 #productBox .cont .arR {
@@ -314,6 +330,7 @@ img {
 	right: 0.35rem;
 	width: 0.65rem;
 	height: 0.97rem;
+	z-index: 9;
 }
 
 #productBox .swiperBox {
@@ -331,6 +348,14 @@ img {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+#productBox .swiperBox .item .itemClick{
+	position: absolute;
+	top: 3.3rem;
+	left: 2.25rem;
+	width: 3rem;
+	height: 5rem;
 }
 
 #productBox .swiperBox .item .title {
@@ -537,7 +562,7 @@ img {
 	left: 50%;
 	width: 5.84rem;
 	height: 3.67rem;
-	transform: translate(-2.92rem, 2.3rem);
+	transform: translate(-2.92rem, 2.2rem) scale(0.9,0.9);
 }
 #peopleBox .btn{
 	position: absolute;
@@ -545,7 +570,7 @@ img {
 	left: 50%;
 	width: 2.2rem;
 	height: 1.4rem;
-	transform: translate(-1.1rem, 4.7rem);
+	transform: translate(-1.1rem, 4.3rem);
 }
 /* peopleBox end */
 
@@ -571,7 +596,9 @@ img {
 	margin-left: -1.55rem;
 	background: url(../images/wineBox/wine.png) 0 0;
 	background-size: 18.6rem 9.65rem;
-	animation: wineing 0.5s 2s steps(5) forwards;
+}
+.wineing{
+	animation: wineing 0.5s steps(5) forwards;
 }
 @keyframes wineing {
 	0% {
@@ -587,14 +614,6 @@ img {
 	left: 50%;
 	width: 2.12rem;
 	margin-left: -1.06rem;
-	animation: showing 1.5s 0.5s ease forwards;
-	opacity: 0;
-}
-@keyframes showing {
-	0%{opacity: 0;}
-	50%{opacity: 1;}
-	80%{opacity: 1;}
-	100%{opacity: 0;}
 }
 #wineBox .btn{
 	position: absolute;
@@ -675,14 +694,14 @@ img {
 	margin-left: -0.94rem;
 	background: url(../images/loadingBox/logo.png) 0 0;
 	background-size: 1.88rem 15.04rem;
-	animation: lettering 1.5s steps(8) infinite;
+	animation: logoing 1s steps(7) forwards;
 }
-@keyframes lettering {
+@keyframes logoing {
 	0% {
 		background-position: 0 0;
 	}
 	100% {
-		background-position: 0 -15.04rem;
+		background-position: 0 -13.16rem;
 	}
 }
 #loadingBox .cont .perBox{
@@ -719,4 +738,22 @@ img {
 .screen159 #peopleBox .btn{
 	transform: translate(-1.1rem, 4.1rem);
 }
+.screen159 #cubeBox{
+	top: 0;
+}
+.screen159 #animeBox .tips{
+	top: 0.7rem;
+}
 /*---------------------------------------- 18:9 ----------------------*/
+.screen189 #cubeBox {
+	top: -1rem;
+}
+.screen159 #animeBox .tips{
+	top: 1.7rem;
+}
+.screen189 #peopleBox .word{
+	transform: translate(-2.92rem, 2.3rem);
+}
+.screen189 #peopleBox .btn{
+	transform: translate(-1.1rem, 4.7rem);
+}
