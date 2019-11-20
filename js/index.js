@@ -19,7 +19,12 @@ $(document).ready(function () {
 			load_handler();
 			sound_handler();
 		});
-		wxUser.init();
+		// var shareInfo = {
+		// 	title:"品味不凡，不止一面",
+		// 	friend: "解锁三面不凡特质，了解吴亦凡灵感调和故事",
+		// 	timeline: "芝华士X吴亦凡全新调和，来品！"
+		// }
+		// wxUser.init({shareInfo:shareInfo});
 	}//edn func
 
 	function sound_handler() {

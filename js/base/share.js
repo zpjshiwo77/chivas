@@ -3,16 +3,17 @@ var ishare=importShare();
 
 //-------------------------------------------------------自定义分享内容
 (function() {
-	ishare.wxId='wx61a3f44683b295b9';//微信 appid
+	ishare.wxId='wx0276e4381196d310';//微信 appid
+	// ishare.wxId='wx61a3f44683b295b9';//微信 测试appid
 	ishare.tbId='';//手淘 appid
 	var hrefs=window.location.href.split('?');
 	ishare.url=hrefs[0].substr(0, hrefs[0].lastIndexOf('/')+1);
 	ishare.content={
 		link:ishare.url,
 		image:ishare.url+'images/share.jpg?v='+Math.random(),
-		title:$('title').html(),
-		friend:'发送给朋友的分享文案',
-		timeline:'发送到给朋友圈的分享文案'
+		title:"品味不凡，不止一面",
+		friend:'解锁三面不凡特质，了解吴亦凡灵感调和故事',
+		timeline:'芝华士X吴亦凡全新调和，来品！'
 	};
 	console.log(ishare.content);
 	if(os.weixin){
@@ -119,7 +120,7 @@ function importShare(){
 	            sharelink = sharelink + (sharelink.indexOf('?') > 0 ? '&' : '?') + 'from_openid=' + localStorage.openid;
 	        }
 	        wx.onMenuShareTimeline({
-	            title: share.content.timeline, // 分享标题
+	            title: '芝华士X吴亦凡全新调和，来品！', // 分享标题
 	            link: sharelink, // 分享链接
 	            imgUrl: share.content.image, // 分享图标
 	            success: function () {
@@ -133,8 +134,8 @@ function importShare(){
 	            }
 	        });
 	        wx.onMenuShareAppMessage({
-	            title: share.content.title, // 分享标题
-	            desc: share.content.friend, // 分享描述
+	            title: '品味不凡，不止一面', // 分享标题
+	            desc: '解锁三面不凡特质，了解吴亦凡灵感调和故事', // 分享描述
 	            link: sharelink, // 分享链接
 	            imgUrl: share.content.image, // 分享图标
 	            type: 'link', // 分享类型,music、video或link，不填默认为link

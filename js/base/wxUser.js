@@ -10,9 +10,9 @@ function WxUser() {
 
     _self.wxSigned = false;
     var dominUrl, shareInfo;
-    var appId = "wxf51a06ff7222539a";
+    var appId = "wx0276e4381196d310";
     var imonitor = window.imonitor || {};
-    var jsdkAPI = 'https://scrm2.beats-digital.com/scrm/api/getconfig';
+    var jsdkAPI = 'https://scrm.beats-digital.com/api/jssdk/sign';
     var authAPI = 'http://t.phper.be-xx.com/invisalign/index.php';
 
     var returnUserInfo = null;
