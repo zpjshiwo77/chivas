@@ -229,6 +229,11 @@ $(document).ready(function () {
 	var videoPlayTimes = 0;
 	var videoVpBox = $("#videoVpBox");
 
+	var moveData = {x:0,y:0};
+	var movePos = [{x:-0.3,y:0.58},{x:-0.66,y:-0.36},{x:1.1,y:0.94}];
+	var nowMovePos = -1;
+	var moveCubeFlag = true;
+
 	/**
 	 * 页面初始化
 	 */
@@ -260,7 +265,9 @@ $(document).ready(function () {
 		$(".limitBtn").on("touchend", limitClick);
 
 		cubeBox.on("touchstart", Prevent);
-		cubeBox.on('touchstart', this_touchstart);
+		cubeBox.on("swipeleft",{dir:1} ,moveCube);
+		cubeBox.on("swiperight",{dir:-1} ,moveCube);
+		// cubeBox.on('touchstart', this_touchstart);
 		// cubeBox.on('click', showProductBox);
 
 		productBox.find(".itemClick").on("click", playVideo);
@@ -276,6 +283,51 @@ $(document).ready(function () {
 
 		introBox.find(".videoBox").one("touchend", playIntroVideo);
 		introBox.find(".btn").one("touchend", jumpOther);
+	}
+
+	/**
+	 * 移动魔方
+	 */
+	function moveCube(e){
+		if (moveCubeFlag) {
+			moveCubeFlag = false;
+			var dir = e.data.dir;
+			var move = {x:0,y:0};
+			if(nowMovePos == -1){
+				nowMovePos = 0;
+				var now = movePos[nowMovePos];
+				move.x += now.x + Math.PI * 2;
+				move.y += now.y;
+			}
+			else{
+				var now = movePos[nowMovePos];
+				nowMovePos = dealIndex(nowMovePos + dir);
+				var next = movePos[nowMovePos];
+				move.x += next.x - now.x;
+				move.y += next.y - now.y + Math.PI * 2;	
+			}
+
+			moveCubeAnime(move,60);
+		}
+	}
+
+	/**
+	 * 移动的魔方的动画
+	 */
+	function moveCubeAnime(move,times){
+		var unitX = move.x / times;
+		var unitY = move.y / times;
+
+		function anime(){
+			imodel.changModelPos(unitX, unitY, 0);
+			times--;
+
+			requestAnimationFrame(function(){
+				if(times > 0) anime();
+				else moveCubeFlag = true;
+			})
+		}
+		anime();
 	}
 
 	/**
@@ -307,7 +359,7 @@ $(document).ready(function () {
 	 */
 	function jumpOther() {
 		if (window.__wxjs_environment === 'miniprogram') {
-			wx.miniProgram.redirectTo({ url: '/pages/jd2/jd2' })
+			wx.miniProgram.navigateTo({ url: '/pages/jd2/jd2' })
 		}
 		else {
 			location.replace("https://chivasb20phase2.pernod-ricard-china.com/sale.html");
@@ -402,6 +454,23 @@ $(document).ready(function () {
 			productBox.removeClass("noPointer");
 			videoBox.find(".wordBox").empty();
 		});
+
+		showNextPro();
+	}
+
+	/**
+	 * 显示下一个产品
+	 */
+	function showNextPro(){
+		var nextId = nowItem + 1 > 2 ? 0 : nowItem + 1;
+		var preId = nowItem - 1 < 0 ? 2 : nowItem - 1;
+		
+		if(!items[preId].hasClass("act")){
+			swipering({data:{dir:-1}});
+		}
+		else if(!items[nextId].hasClass("act")){
+			swipering({data:{dir:1}});
+		}
 	}
 
 	/**
@@ -644,6 +713,9 @@ $(document).ready(function () {
 		var rtaX = disY * 0.02;
 		var rtaY = disX * 0.02;
 		imodel.changModelPos(rtaX, rtaY, 0);
+		moveData.x += rtaX;
+		moveData.y += rtaY;
+		console.log(moveData)
 		posLast[0] = e.originalEvent.touches[0].clientX;
 		posLast[1] = e.originalEvent.touches[0].clientY;
 	}//end func
