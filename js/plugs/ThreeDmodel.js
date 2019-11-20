@@ -6,6 +6,8 @@ var ThreeDmodel = function () {
 	var ambLight, spotLight;
 	var loader;
 	var renderFlag = true;
+	var clickCallback = null;
+	var clickObjs = [];
 	var defaultOpts = {
 		modelSrc: 'models/qingwa01.fbx',
 		ambColor: 0xaaaaaa,
@@ -34,6 +36,13 @@ var ThreeDmodel = function () {
 
 		loadModels(defaultOpts.modelSrc, renderScene);
 	}//end func
+
+	/**
+	 * 事件绑定
+	 */
+	_self.on = function (event, func) {
+		if (event == "click") clickCallback = func;
+	}
 
 	//改变模型位置
 	_self.changModelPos = function (x, y, z) {
@@ -88,7 +97,7 @@ var ThreeDmodel = function () {
 			premultipliedAlpha: false,		//?
 			preserveDrawingBuffer: false,	//是否保存绘图缓冲
 			stencil: true,
-    		alpha:true
+			alpha: true
 		}
 		renderer = new THREE.WebGLRenderer(options);
 		renderer.setSize(box.width(), box.height());
@@ -110,12 +119,14 @@ var ThreeDmodel = function () {
 					// child.castShadow = true;
 					// child.material.transparent = true;
 					// child.material.opacity = 0;
+					clickObjs.push(mesh);
 				}
 			});
 			imodel = object;
 			scene.add(imodel);
 			if (callback) callback();
 			defaultOpts.onComplete();
+			initThreeClickEvent();
 		}, onProgress);
 
 		//加载进度
@@ -124,6 +135,37 @@ var ThreeDmodel = function () {
 		}//end func
 
 	}//end func
+
+	/**
+	 * 初始化场景点击事件
+	 */
+	function initThreeClickEvent() {
+		//点击射线
+		var raycaster = new THREE.Raycaster();
+		var mouse = new THREE.Vector2();
+		box.on("click", boxClickSence)
+		function boxClickSence(event) {
+			event.preventDefault();
+			var x = event.clientX;
+			var y = event.clientY - (window.innerHeight / 2 - (5.1 * window.innerWidth / 750 * 100));
+			mouse.x = (x / renderer.domElement.clientWidth) * 2 - 1;
+			mouse.y = -(y / renderer.domElement.clientHeight) * 2 + 1;
+
+			raycaster.setFromCamera(mouse, camera);
+
+			//总结一下，这里必须装网格，mesh，装入组是没有效果的
+			//所以我们将所有的盒子的网格放入对象就可以了
+			// 需要被监听的对象要存储在clickObjs中。
+			var intersects = raycaster.intersectObjects(clickObjs);
+
+			if (intersects.length > 0) {
+				// console.log(intersects)
+				// console.log(intersects[0].faceIndex)
+				if(clickCallback) clickCallback(intersects[0].faceIndex);
+			}
+
+		}
+	}
 
 	//渲染场景
 	function renderScene() {
@@ -160,18 +202,18 @@ var ThreeDmodel = function () {
 	/**
 	 * 添加点光源
 	 */
-	function addPointLight(){
+	function addPointLight() {
 		var PointLight1 = new THREE.PointLight(0xff0000, 1);
 		PointLight1.name = 'PointLight1';
-		PointLight1.position.set( -15, -15, 4 );
+		PointLight1.position.set(-15, -15, 4);
 		PointLight1.intensity = 100;
 		PointLight1.distance = 17.5;
 
 		scene.add(PointLight1);
-		
+
 		var PointLight2 = new THREE.PointLight(0xff00ff, 1);
 		PointLight2.name = 'PointLight2';
-		PointLight2.position.set( 15, 15, 4 );
+		PointLight2.position.set(15, 15, 4);
 		PointLight2.intensity = 100;
 		PointLight2.distance = 17.5;
 
@@ -183,7 +225,7 @@ var ThreeDmodel = function () {
 		//添加聚光
 		spotLight = new THREE.SpotLight(0xffffff, 1);
 		spotLight.name = 'spotLight';
-		spotLight.position.set( 0, 15, 5 );
+		spotLight.position.set(0, 15, 5);
 		spotLight.angle = Math.PI / 4;
 		spotLight.intensity = 5;
 		spotLight.distance = 17.5;

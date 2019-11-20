@@ -60,6 +60,7 @@ $(document).ready(function () {
 		loader.addCompletionListener(function () {
 			icom.fadeIn(articleBox);
 			load_more();
+			// pageInit();
 			loader = null;
 		});
 		loader.start();
@@ -233,8 +234,8 @@ $(document).ready(function () {
 	 */
 	function pageInit() {
 		eventInit();
-		DevelopTest();
-		// monitor_handler();
+		// DevelopTest();
+		monitor_handler();
 
 		animeBox.show();
 		icom.fadeOut($("#loadingBox"));
@@ -260,7 +261,7 @@ $(document).ready(function () {
 
 		cubeBox.on("touchstart", Prevent);
 		cubeBox.on('touchstart', this_touchstart);
-		cubeBox.on('click', showProductBox);
+		// cubeBox.on('click', showProductBox);
 
 		productBox.find(".itemClick").on("click", playVideo);
 
@@ -275,6 +276,13 @@ $(document).ready(function () {
 
 		introBox.find(".videoBox").one("touchend", playIntroVideo);
 		introBox.find(".btn").one("touchend", jumpOther);
+	}
+
+	/**
+	 * 点击立方体的面
+	 */
+	function clickCubeFace(id){
+		if(id == 0 || id == 0 || id == 24 || id == 27) showProductBox();
 	}
 
 	/**
@@ -299,10 +307,10 @@ $(document).ready(function () {
 	 */
 	function jumpOther() {
 		if (window.__wxjs_environment === 'miniprogram') {
-			wx.miniProgram.redirectTo({ url: '/path/to/page' })
+			wx.miniProgram.redirectTo({ url: '/pages/jd2/jd2' })
 		}
 		else {
-			location.replace("http://t.sky.be-xx.com/2019/chivas-cday-h5/second/sale.html");
+			location.replace("https://chivasb20phase2.pernod-ricard-china.com/sale.html");
 		}
 	}
 
@@ -321,10 +329,12 @@ $(document).ready(function () {
 		$("#myVideo").show();
 		introBox.find(".videoBox .cover").hide();
 		var video = $("#myVideo")[0];
-		// video.play();
-		setTimeout(() => {
-			video.play();
-		}, 500);
+		if(os.ios) video.play();
+		else{
+			setTimeout(() => {
+				video.play();
+			}, 500);
+		}
 	}
 
 	/**
@@ -528,7 +538,7 @@ $(document).ready(function () {
 	function modelInit() {
 		imodel = new ThreeDmodel();
 		var opts = {
-			modelSrc: "model/box04.fbx",
+			modelSrc: "model/box05.fbx",
 			ambColor: 0xffffff,
 			spotLight: true,
 			pointLight: true,
@@ -539,6 +549,7 @@ $(document).ready(function () {
 		};
 
 		imodel.init("cubeBox", opts);
+		imodel.on("click", clickCubeFace);
 	}
 
 	/**
