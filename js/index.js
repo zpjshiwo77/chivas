@@ -296,8 +296,8 @@ $(document).ready(function () {
 			if(nowMovePos == -1){
 				nowMovePos = 0;
 				var now = movePos[nowMovePos];
-				move.x += now.x + Math.PI * 2;
-				move.y += now.y;
+				move.x += now.x;
+				move.y += now.y + Math.PI * 2;
 			}
 			else{
 				var now = movePos[nowMovePos];
