@@ -260,7 +260,7 @@ $(document).ready(function () {
 	 */
 	function DevelopTest() {
 		$("#loadingBox").hide();
-		showIntroBox();
+		showProductBox();
 	}
 
 	/**
@@ -376,7 +376,18 @@ $(document).ready(function () {
 	 */
 	function showProductBox() {
 		productBox.show();
-		icom.fadeOut(animeBox);
+		icom.fadeOut(animeBox,500,function(){
+			swipering({data:{dir:1}});
+			setTimeout(function(){
+				swipering({data:{dir:1}});
+			},1010);
+			setTimeout(function(){
+				swipering({data:{dir:1}});
+			},2020);
+			setTimeout(function(){
+				icom.fadeIn(productBox.find(".point"));
+			},3020);
+		});
 	}
 
 	/**
@@ -452,15 +463,20 @@ $(document).ready(function () {
 	 */
 	function closeVideoBox() {
 		if (videoPlayTimes == 3) showMoreBox();
+		var box = items[nowItem];
 		productBox.addClass("noPointer");
+		box.find(".point").hide();
 		icom.fadeOut(videoBox, 500, function () {
 			videoVpBox.destroy();
 			videoVpBox.empty();
-			productBox.removeClass("noPointer");
 			videoBox.find(".wordBox").empty();
+			icom.fadeIn(box.find(".title"),800);
 		});
 
-		showNextPro();
+		setTimeout(function(){
+			productBox.removeClass("noPointer");
+			showNextPro();
+		}, 2000);
 	}
 
 	/**
@@ -491,11 +507,11 @@ $(document).ready(function () {
 		productBox.addClass("noPointer");
 		videoBox.addClass("noPointer");
 
-		if(!tips.hasClass("act")){
-			time = 1500;
-			tips.addClass("act");
-			tips.transition({opacity:1},1000);
-		}
+		// if(!tips.hasClass("act")){
+		// 	time = 1500;
+		// 	tips.addClass("act");
+		// 	tips.transition({opacity:1},1000);
+		// }
 
 		setTimeout(function(){
 			icom.fadeIn(videoBox, 500, function () {
@@ -552,11 +568,11 @@ $(document).ready(function () {
 			items.push($(this));
 		});
 
-		box.on("swipeleft", { dir: -1 }, swipering);
-		box.on("swiperight", { dir: 1 }, swipering);
+		// box.on("swipeleft", { dir: -1 }, swipering);
+		// box.on("swiperight", { dir: 1 }, swipering);
 
-		arL.on("touchend", { dir: 1 }, swipering);
-		arR.on("touchend", { dir: -1 }, swipering);
+		// arL.on("touchend", { dir: 1 }, swipering);
+		// arR.on("touchend", { dir: -1 }, swipering);
 	}
 
 	/**
