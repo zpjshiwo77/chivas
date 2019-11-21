@@ -169,20 +169,20 @@ $(document).ready(function () {
 		loader.addImage('images/animeBox/word.png');
 
 		for (var i = 0; i <= 109; i++) {
-			loader.addImage('images/anime/join_'+i+'.jpg');
+			loader.addImage('images/anime/join_' + i + '.jpg');
 		}
 
 		for (var i = 1; i <= 70; i++) {
-			loader.addImage('images/videoBox/red/pic'+i+'.jpg');
-			loader.addImage('images/videoBox/black/pic'+i+'.jpg');
-			loader.addImage('images/videoBox/silver/pic'+i+'.jpg');
+			loader.addImage('images/videoBox/red/pic' + i + '.jpg');
+			loader.addImage('images/videoBox/black/pic' + i + '.jpg');
+			loader.addImage('images/videoBox/silver/pic' + i + '.jpg');
 		}
 
 		//实际加载进度
-		loader.addProgressListener(function(e) {
-			var per=Math.round(e.completedCount/e.totalCount*50);
-			loadPer.css({width:per+'%'});
-			loadWord.html(per+'%');
+		loader.addProgressListener(function (e) {
+			var per = Math.round(e.completedCount / e.totalCount * 50);
+			loadPer.css({ width: per + '%' });
+			loadWord.html(per + '%');
 		});
 
 		loader.addCompletionListener(function () {
@@ -199,8 +199,8 @@ $(document).ready(function () {
 		per = per || 0;
 		per += imath.randomRange(1, 3);
 		per = per > 100 ? 100 : per;
-		loadPer.css({width:per+'%'});
-		loadWord.html(per+'%');
+		loadPer.css({ width: per + '%' });
+		loadWord.html(per + '%');
 		if (per == 100) setTimeout(pageInit, 200);
 		else setTimeout(load_timer, 33, per);
 	}//edn func
@@ -234,10 +234,11 @@ $(document).ready(function () {
 	var videoPlayTimes = 0;
 	var videoVpBox = $("#videoVpBox");
 
-	var moveData = {x:0,y:0};
-	var movePos = [{x:1.1,y:0.94},{x:-0.3,y:0.58},{x:-0.66,y:-0.36}];
+	var moveData = { x: 0, y: 0 };
+	var movePos = [{ x: 1.1, y: 0.94 }, { x: -0.3, y: 0.58 }, { x: -0.66, y: -0.36 }];
 	var nowMovePos = -1;
 	var moveCubeFlag = true;
+	var wineAnimeFlag = true;
 
 	/**
 	 * 页面初始化
@@ -270,8 +271,8 @@ $(document).ready(function () {
 		$(".limitBtn").on("touchend", limitClick);
 
 		cubeBox.on("touchstart", Prevent);
-		cubeBox.on("swipeleft",{dir:1} ,moveCube);
-		cubeBox.on("swiperight",{dir:-1} ,moveCube);
+		cubeBox.on("swipeleft", { dir: 1 }, moveCube);
+		cubeBox.on("swiperight", { dir: -1 }, moveCube);
 		// cubeBox.on('touchstart', this_touchstart);
 		// cubeBox.on('click', showProductBox);
 
@@ -282,7 +283,9 @@ $(document).ready(function () {
 		peopleBox.find(".btn").on("touchend", showWineBox);
 
 		wineBox.find(".btn").on("touchend", showIntroBox);
-		wineBox.one("touchmove", wineAnime);
+		// wineBox.one("touchmove", wineAnime);
+		wineBox.one("swipeleft", wineAnime);
+		wineBox.one("swiperight", wineAnime);
 
 		videoBox.find(".close").on("touchend", closeVideoBox);
 
@@ -293,42 +296,42 @@ $(document).ready(function () {
 	/**
 	 * 移动魔方
 	 */
-	function moveCube(e){
+	function moveCube(e) {
 		if (moveCubeFlag) {
 			moveCubeFlag = false;
 			var dir = e.data.dir;
-			var move = {x:0,y:0};
-			if(nowMovePos == -1){
+			var move = { x: 0, y: 0 };
+			if (nowMovePos == -1) {
 				nowMovePos = 0;
 				var now = movePos[nowMovePos];
 				move.x += now.x;
 				move.y += now.y + Math.PI * 2;
 			}
-			else{
+			else {
 				var now = movePos[nowMovePos];
 				nowMovePos = dealIndex(nowMovePos + dir);
 				var next = movePos[nowMovePos];
 				move.x += next.x - now.x;
-				move.y += next.y - now.y + Math.PI * 2;	
+				move.y += next.y - now.y + Math.PI * 2;
 			}
 
-			moveCubeAnime(move,60);
+			moveCubeAnime(move, 60);
 		}
 	}
 
 	/**
 	 * 移动的魔方的动画
 	 */
-	function moveCubeAnime(move,times){
+	function moveCubeAnime(move, times) {
 		var unitX = move.x / times;
 		var unitY = move.y / times;
 
-		function anime(){
+		function anime() {
 			imodel.changModelPos(unitX, unitY, 0);
 			times--;
 
-			requestAnimationFrame(function(){
-				if(times > 0) anime();
+			requestAnimationFrame(function () {
+				if (times > 0) anime();
 				else moveCubeFlag = true;
 			})
 		}
@@ -338,25 +341,28 @@ $(document).ready(function () {
 	/**
 	 * 点击立方体的面
 	 */
-	function clickCubeFace(id){
-		if(id == 6 || id == 9) showProductBox();
+	function clickCubeFace(id) {
+		if (id == 6 || id == 9) showProductBox();
 	}
 
 	/**
 	 * 酒的动画
 	 */
-	function wineAnime(){
-		var wine = wineBox.find(".wine");
-		var word = wineBox.find(".word");
-		var btn = wineBox.find(".btn");
+	function wineAnime() {
+		if (wineAnimeFlag) {
+			wineAnimeFlag = false;
+			var wine = wineBox.find(".wine");
+			var word = wineBox.find(".word");
+			var btn = wineBox.find(".btn");
 
-		icom.fadeOut(word,500,function(){
-			wine.addClass("wineing");
-		});
+			icom.fadeOut(word, 500, function () {
+				wine.addClass("wineing");
+			});
 
-		setTimeout(function(){
-			icom.fadeIn(btn);
-		},500)
+			setTimeout(function () {
+				icom.fadeIn(btn);
+			}, 500)
+		}
 	}
 
 	/**
@@ -376,17 +382,19 @@ $(document).ready(function () {
 	 */
 	function showProductBox() {
 		productBox.show();
-		icom.fadeOut(animeBox,500,function(){
-			swipering({data:{dir:1}});
-			setTimeout(function(){
-				swipering({data:{dir:1}});
-			},1010);
-			setTimeout(function(){
-				swipering({data:{dir:1}});
-			},2020);
-			setTimeout(function(){
-				icom.fadeIn(productBox.find(".point"));
-			},3020);
+		var time = 1500;
+		icom.fadeOut(animeBox, 500, function () {
+			items[0].transition({ x: "7.5rem" }, time, "linear", function () {
+				items[0].css({ x: "-7.5rem" })
+					.transition({ x: 0, delay: time }, time, "linear", function () {
+						icom.fadeIn(productBox.find(".point"));
+						icom.fadeIn(productBox.find(".tips"));
+					});
+			});
+			items[1].show().css({ x: "-7.5rem" })
+				.transition({ x: "7.5rem" }, time * 2, "linear");
+			items[2].show().css({ x: "-7.5rem" })
+				.transition({ x: "7.5rem", delay: time * 1 }, time * 2, "linear");
 		});
 	}
 
@@ -397,8 +405,8 @@ $(document).ready(function () {
 		$("#myVideo").show();
 		introBox.find(".videoBox .cover").hide();
 		var video = $("#myVideo")[0];
-		if(os.ios) video.play();
-		else{
+		if (os.ios) video.play();
+		else {
 			setTimeout(() => {
 				video.play();
 			}, 500);
@@ -443,9 +451,9 @@ $(document).ready(function () {
 
 			},
 			onEnd: function () {
-				setTimeout(function(){
+				setTimeout(function () {
 					peopleAnime.gotoAndPlay(0);
-				},1500);
+				}, 1500);
 			}
 		});
 	}
@@ -462,7 +470,7 @@ $(document).ready(function () {
 	 * 关闭视频页面
 	 */
 	function closeVideoBox() {
-		if (videoPlayTimes == 3) showMoreBox();
+
 		var box = items[nowItem];
 		productBox.addClass("noPointer");
 		box.find(".point").hide();
@@ -470,27 +478,28 @@ $(document).ready(function () {
 			videoVpBox.destroy();
 			videoVpBox.empty();
 			videoBox.find(".wordBox").empty();
-			icom.fadeIn(box.find(".title"),800);
+			icom.fadeIn(box.find(".title"), 800);
 		});
 
-		setTimeout(function(){
+		setTimeout(function () {
 			productBox.removeClass("noPointer");
-			showNextPro();
+			if (videoPlayTimes == 3) showMoreBox();
+			else showNextPro();
 		}, 2000);
 	}
 
 	/**
 	 * 显示下一个产品
 	 */
-	function showNextPro(){
+	function showNextPro() {
 		var nextId = nowItem + 1 > 2 ? 0 : nowItem + 1;
 		var preId = nowItem - 1 < 0 ? 2 : nowItem - 1;
-		
-		if(!items[preId].hasClass("act")){
-			swipering({data:{dir:-1}});
+
+		if (!items[preId].hasClass("act")) {
+			swipering({ data: { dir: -1 } });
 		}
-		else if(!items[nextId].hasClass("act")){
-			swipering({data:{dir:1}});
+		else if (!items[nextId].hasClass("act")) {
+			swipering({ data: { dir: 1 } });
 		}
 	}
 
@@ -501,7 +510,7 @@ $(document).ready(function () {
 		var that = $(this).parents(".item");
 		var type = that.attr("data-val");
 		var pattern = videoBox.find(".pattern");
-		var tips = productBox.find(".tips_"+type);
+		var tips = productBox.find(".tips_" + type);
 		var time = 0;
 
 		productBox.addClass("noPointer");
@@ -513,7 +522,7 @@ $(document).ready(function () {
 		// 	tips.transition({opacity:1},1000);
 		// }
 
-		setTimeout(function(){
+		setTimeout(function () {
 			icom.fadeIn(videoBox, 500, function () {
 				videoBox.removeClass("noPointer");
 				productBox.removeClass("noPointer");
@@ -529,16 +538,16 @@ $(document).ready(function () {
 					videoPlayTimes++;
 				}
 			});
-			
+
 			videoBox.find(".bg")[0].src = "images/videoBox/" + type + ".jpg";
 			videoBox.find(".maskBox").removeClass("red black silver").addClass(type);
 			if (type == "silver") pattern.show();
 			else pattern.hide();
-	
+
 			videoVpBox.VP({
 				debug: false,
 				autoPlay: true,
-				loop: false,
+				loop: true,
 				total: 70,
 				time: 4,
 				type: 'jpg',
@@ -546,7 +555,7 @@ $(document).ready(function () {
 				poster: "images/videoBox/" + type + "/pic1.jpg",
 				path: "images/videoBox/" + type + "/pic",
 				onPlay: function () {
-					
+
 				},
 				onEnd: function () {
 					videoVpBox.destroy();
