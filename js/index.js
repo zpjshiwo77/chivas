@@ -235,7 +235,7 @@ $(document).ready(function () {
 	var videoVpBox = $("#videoVpBox");
 
 	var moveData = {x:0,y:0};
-	var movePos = [{x:-0.3,y:0.58},{x:-0.66,y:-0.36},{x:1.1,y:0.94}];
+	var movePos = [{x:1.1,y:0.94},{x:-0.3,y:0.58},{x:-0.66,y:-0.36}];
 	var nowMovePos = -1;
 	var moveCubeFlag = true;
 
@@ -339,7 +339,7 @@ $(document).ready(function () {
 	 * 点击立方体的面
 	 */
 	function clickCubeFace(id){
-		if(id == 0 || id == 0 || id == 24 || id == 27) showProductBox();
+		if(id == 6 || id == 9) showProductBox();
 	}
 
 	/**
@@ -628,7 +628,7 @@ $(document).ready(function () {
 	function modelInit() {
 		imodel = new ThreeDmodel();
 		var opts = {
-			modelSrc: "model/box05.fbx",
+			modelSrc: "model/box06.fbx",
 			ambColor: 0xffffff,
 			spotLight: true,
 			pointLight: true,
@@ -677,7 +677,7 @@ $(document).ready(function () {
 	 * 立方体旋转
 	 */
 	function cubeRotate() {
-		var count = 63;
+		var count = 80;
 		var unit = (-Math.PI * 2 - 0.9) / count;
 
 		function rotating() {
