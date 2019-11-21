@@ -176,6 +176,7 @@ $(document).ready(function () {
 			loader.addImage('images/videoBox/red/pic' + i + '.jpg');
 			loader.addImage('images/videoBox/black/pic' + i + '.jpg');
 			loader.addImage('images/videoBox/silver/pic' + i + '.jpg');
+			loader.addImage('images/peopleBox/people/' + i + '.jpg');
 		}
 
 		//实际加载进度
@@ -212,6 +213,7 @@ $(document).ready(function () {
 	var productBox = $("#productBox");
 	var peopleBox = $("#peopleBox");
 	var peopleAnime = $("#peopleAnime");
+	var wineAnime = $("#wineAnime");
 	var introBox = $("#introBox");
 	var wineBox = $("#wineBox");
 	var videoBox = $("#videoBox");
@@ -261,7 +263,8 @@ $(document).ready(function () {
 	 */
 	function DevelopTest() {
 		$("#loadingBox").hide();
-		showProductBox();
+		// showPeopleBox();
+		showWineBox();
 	}
 
 	/**
@@ -283,9 +286,9 @@ $(document).ready(function () {
 		peopleBox.find(".btn").on("touchend", showWineBox);
 
 		wineBox.find(".btn").on("touchend", showIntroBox);
-		// wineBox.one("touchmove", wineAnime);
-		wineBox.one("swipeleft", wineAnime);
-		wineBox.one("swiperight", wineAnime);
+		// wineBox.find(".wine").one("touchmove", wineAnime);
+		wineBox.find(".wine").one("swipeleft", wineSwiperAnime);
+		wineBox.find(".wine").one("swiperight", wineSwiperAnime);
 
 		videoBox.find(".close").on("touchend", closeVideoBox);
 
@@ -348,7 +351,7 @@ $(document).ready(function () {
 	/**
 	 * 酒的动画
 	 */
-	function wineAnime() {
+	function wineSwiperAnime() {
 		if (wineAnimeFlag) {
 			wineAnimeFlag = false;
 			var wine = wineBox.find(".wine");
@@ -429,6 +432,7 @@ $(document).ready(function () {
 		wineBox.show();
 		icom.fadeOut(peopleBox);
 		peopleAnime.destroy();
+		wineAnime.destroy();
 	}
 
 	/**
@@ -438,15 +442,32 @@ $(document).ready(function () {
 		peopleBox.show();
 		icom.fadeOut(moreBox);
 
+		wineAnime.VP({
+			debug: false,
+			autoPlay: true,
+			loop: true,
+			total: 10,
+			time: 1,
+			type: 'jpg',
+			poster: "images/peopleBox/1.jpg",
+			path: "images/peopleBox/",
+			onPlay: function () {
+
+			},
+			onEnd: function () {
+				
+			}
+		});
+
 		peopleAnime.VP({
 			debug: false,
 			autoPlay: true,
 			loop: false,
-			total: 10,
-			time: 1.5,
+			total: 70,
+			time: 4,
 			type: 'jpg',
-			poster: "images/peopleBox/1.jpg",
-			path: "images/peopleBox/",
+			poster: "images/peopleBox/people/1.jpg",
+			path: "images/peopleBox/people/",
 			onPlay: function () {
 
 			},

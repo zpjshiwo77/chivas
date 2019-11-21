@@ -570,6 +570,23 @@ img {
 	background-size: cover;
 	background-position: center;
 }
+#peopleBox .people{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 7.5rem;
+	height: 14.73rem;
+	margin-top: -7.5rem;
+	-webkit-mask: url(../images/peopleBox/mask.png);
+	-webkit-mask-size: 100% 100%;
+}
+#peopleBox .people #peopleAnime{
+	position: absolute;
+	top: 2.3rem;
+	left: 0;
+	width: 7.53rem;
+	height: 7.31rem;
+}
 #peopleBox .word{
 	position: absolute;
 	top: 50%;
