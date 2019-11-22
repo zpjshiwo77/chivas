@@ -78,8 +78,19 @@
 
         <section id="productBox" class="none">
             <div class="cont">
-                <div class="swiperBox">
-                    <div class="item hide" data-val="red">
+                <div class="enterBox">
+                    <img src="images/productBox/pattern.png" class="pattern">
+                    <img src="images/productBox/silver.png" class="pro silver hide">
+                    <img src="images/productBox/black.png" class="pro black hide">
+                    <img src="images/productBox/red.png" class="pro red2 none">
+                    <img src="images/productBox/redm.png" class="pro red1 none">
+                    <div class="point none">
+                        <img src="images/productBox/point.png?v=2" class="pointp lighting">
+                        <img src="images/productBox/word.png" class="pointw">
+                    </div>
+                </div>
+                <div class="swiperBox none">
+                    <div class="item" data-val="red">
                         <img src="images/productBox/r.png" class="title" style="display: none;">
                         <img src="images/productBox/r1.png" class="pro">
                         <div class="point none">
@@ -88,19 +99,19 @@
                         </div>
                         <div class="itemClick"></div>
                     </div>
-                    <div class="item hide" data-val="black">
+                    <div class="item none" data-val="black">
                         <img src="images/productBox/b.png" class="title" style="display: none;">
                         <img src="images/productBox/b1.png" class="pro">
-                        <div class="point none">
+                        <div class="point">
                             <img src="images/productBox/point.png?v=2" class="pointp lighting">
                             <img src="images/productBox/word.png" class="pointw">
                         </div>
                         <div class="itemClick"></div>
                     </div>
-                    <div class="item hide" data-val="silver">
+                    <div class="item none" data-val="silver">
                         <img src="images/productBox/s.png" class="title" style="display: none;">
                         <img src="images/productBox/s1.png" class="pro">
-                        <div class="point none">
+                        <div class="point">
                             <img src="images/productBox/point.png?v=2" class="pointp lighting">
                             <img src="images/productBox/word.png" class="pointw">
                         </div>
@@ -119,6 +130,8 @@
                     <img src="images/videoBox/black.png" class="tips_black">
                 </div> -->
                 <img src="images/productBox/tips.png?v=2" class="tips none">
+                <img src="images/productBox/tips2.png" class="tips2 none">
+                <img src="images/productBox/tips3.png" class="tips2 none updowning">
             </div>
             <img src="images/public/tips.png" class="reasonTips">
         </section>
@@ -127,10 +140,17 @@
             <img src="images/public/logo.png" class="logo none">
             <div id="animeBg" class="full"></div>
             <div class="cont">
-                <div id="cubeBox" class="noPointer"></div>
+                <div id="cubeBox" class="noPointer">
+                    <div class="full none" id="anime1"></div>
+                    <div class="full none" id="anime2"></div>
+                    <div class="full none" id="anime3"></div>
+                    <div class="full none" id="anime4"></div>
+                    <div class="full none" id="anime5"></div>
+                </div>
                 <!-- <div id="cubeBox" style="transform: scale(1,1);" class=""></div> -->
-                <img src="images/animeBox/tips.png" class="tips none">
-                <img src="images/animeBox/word.png" class="word none">
+                <img src="images/animeBox/t1.png" class="tips tips1 none">
+                <img src="images/animeBox/t2.png" class="tips tips2 none">
+                <img src="images/animeBox/word.png?v=2" class="word none">
                 <!-- <img src="images/public/arrow.png" class="arrow none"> -->
             </div>
             <img src="images/public/tips.png" class="reasonTips none">
@@ -207,11 +227,12 @@
     <script src="js/plugs/iscroll.js"></script>
     <script src="js/plugs/annieCore.min.js"></script>
     <script src="js/plugs/jquery.vp.js"></script>
-    <script src="js/plugs/threejs/three.js"></script>
-    <script src="js/plugs/threejs/controls/OrbitControls.js"></script>
-    <script src="js/plugs/threejs/inflate.min.js"></script>
-    <script src="js/plugs/threejs/loaders/FBXLoader.js"></script>
-    <script src="js/plugs/ThreeDmodel.js"></script>
+    <script src="js/plugs/gif.js"></script>
+    <!-- <script src="js/plugs/threejs/three.js"></script> -->
+    <!-- <script src="js/plugs/threejs/controls/OrbitControls.js"></script> -->
+    <!-- <script src="js/plugs/threejs/inflate.min.js"></script> -->
+    <!-- <script src="js/plugs/threejs/loaders/FBXLoader.js"></script> -->
+    <!-- <script src="js/plugs/ThreeDmodel.js"></script> -->
     <script>ibase.load('js/index.js');</script>
 </body>
 

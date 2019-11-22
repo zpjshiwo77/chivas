@@ -133,6 +133,12 @@ $(document).ready(function () {
 		loader.addImage('images/productBox/s.png');
 		loader.addImage('images/productBox/s1.png');
 		loader.addImage('images/productBox/tips.png');
+		loader.addImage('images/productBox/red.png');
+		loader.addImage('images/productBox/black.png');
+		loader.addImage('images/productBox/silver.png');
+		loader.addImage('images/productBox/tips2.png');
+		loader.addImage('images/productBox/tips3.png');
+		loader.addImage('images/productBox/pattern.png');
 		loader.addImage('images/peopleBox/1.jpg');
 		loader.addImage('images/peopleBox/10.jpg');
 		loader.addImage('images/peopleBox/2.jpg');
@@ -165,7 +171,8 @@ $(document).ready(function () {
 		loader.addImage('images/common/turn_unlock.png');
 		loader.addImage('images/common/turn_yes.png');
 		loader.addImage('images/animeBox/bg.jpg');
-		loader.addImage('images/animeBox/tips.png');
+		loader.addImage('images/animeBox/t1.png');
+		loader.addImage('images/animeBox/t2.png');
 		loader.addImage('images/animeBox/word.png');
 
 		for (var i = 0; i <= 109; i++) {
@@ -224,9 +231,7 @@ $(document).ready(function () {
 	var animeBg = $("#animeBg");
 	var tipsBox = $("#tipsBox");
 	var privacyBox = $("#privacyBox");
-
-
-
+	
 	var ruleScroll = new IScroll('#ruleScroll', {
 		bounce: false,
 		click: true
@@ -245,6 +250,9 @@ $(document).ready(function () {
 	var nowMovePos = -1;
 	var moveCubeFlag = true;
 	var wineAnimeFlag = true;
+	var showMoreFlag = false;
+
+	var cubeAnimes = [];
 
 	/**
 	 * 页面初始化
@@ -258,8 +266,9 @@ $(document).ready(function () {
 		icom.fadeOut($("#loadingBox"));
 		privacyInit();
 		animeBgInit();
-		modelInit();
+		// modelInit();
 		swiperInit();
+		cubeAnimesInit();
 	}//end func
 
 	/**
@@ -268,7 +277,8 @@ $(document).ready(function () {
 	function DevelopTest() {
 		$("#loadingBox").hide();
 		// showPeopleBox();
-		showWineBox();
+		// showWineBox();
+		showProductBox();
 	}
 
 	/**
@@ -277,13 +287,15 @@ $(document).ready(function () {
 	function eventInit() {
 		$(".limitBtn").on("touchend", limitClick);
 
-		cubeBox.on("touchstart", Prevent);
+		// cubeBox.on("touchstart", Prevent);
 		cubeBox.on("swipeleft", { dir: 1 }, moveCube);
 		cubeBox.on("swiperight", { dir: -1 }, moveCube);
 		// cubeBox.on('touchstart', this_touchstart);
-		// cubeBox.on('click', showProductBox);
+		cubeBox.on('click', clickCubeFace);
 
-		productBox.find(".itemClick").on("click", playVideo);
+		productBox.find(".itemClick").on("click",{color:"x"}, playVideo);
+		productBox.find(".enterBox").on("click",{color:"red"} ,playVideo);
+		productBox.on("touchmove", showMoreBox);
 
 		moreBox.find(".btn").on("touchend", showPeopleBox);
 
@@ -301,30 +313,93 @@ $(document).ready(function () {
 	}
 
 	/**
+	 * 魔方动画初始化
+	 */
+	function cubeAnimesInit(){
+		var nums = [0,24,27,26,21,26];
+		for (var i = 1; i <= 5; i++) {
+			var anime = $("#anime"+i);
+			gifInit(anime,nums[i],i);
+			cubeAnimes.push(anime);			
+		}
+	}
+
+	/**
+	 * gif初始化
+	 */
+	function gifInit(anime,num,i){
+		anime.gifOn({
+			path:"images/animeBox/cube/"+i+"/",
+			type:"image",
+			num: num,
+			speed: 60,
+			pause: true,
+			repeat: 9999,
+			onComplete: function(){
+				anime.gifGoto(num-1);
+			}
+		});
+	}
+
+	/**
 	 * 移动魔方
 	 */
 	function moveCube(e) {
 		if (moveCubeFlag) {
 			moveCubeFlag = false;
-			var dir = e.data.dir;
-			var move = { x: 0, y: 0 };
 			if (nowMovePos == -1) {
-				nowMovePos = 0;
-				var now = movePos[nowMovePos];
-				move.x += now.x;
-				move.y += now.y + Math.PI * 2;
+				cubeAnimes[0].hide();
+				cubeAnimes[1].show().gifResume();
+				nowMovePos = dealIndex(nowMovePos + 1);
+				icom.fadeOut(animeBox.find(".tips1"));		
+				icom.fadeIn(animeBox.find(".tips2"));	
+				setTimeout(function(){
+					cubeAnimes[1].hide();
+					cubeAnimes[2].show();
+				}, 1300);	
 			}
 			else {
-				var now = movePos[nowMovePos];
-				nowMovePos = dealIndex(nowMovePos + dir);
-				var next = movePos[nowMovePos];
-				move.x += next.x - now.x;
-				move.y += next.y - now.y + Math.PI * 2;
+				var now = cubeAnimes[nowMovePos + 2];
+				nowMovePos = dealIndex(nowMovePos + 1);
+				var next = cubeAnimes[nowMovePos + 2];
+				now.gifResume();
 			}
 
-			moveCubeAnime(move, 60);
+			setTimeout(function(){
+				moveCubeFlag = true;
+				if(now){
+					now.hide().gifGoto(0);
+					next.show();
+				}
+			}, 1300);
 		}
 	}
+
+	// /**
+	//  * 移动魔方
+	//  */
+	// function moveCube(e) {
+	// 	if (moveCubeFlag) {
+	// 		moveCubeFlag = false;
+	// 		var dir = e.data.dir;
+	// 		var move = { x: 0, y: 0 };
+	// 		if (nowMovePos == -1) {
+	// 			nowMovePos = 0;
+	// 			var now = movePos[nowMovePos];
+	// 			move.x += now.x;
+	// 			move.y += now.y + Math.PI * 2;
+	// 		}
+	// 		else {
+	// 			var now = movePos[nowMovePos];
+	// 			nowMovePos = dealIndex(nowMovePos + dir);
+	// 			var next = movePos[nowMovePos];
+	// 			move.x += next.x - now.x;
+	// 			move.y += next.y - now.y + Math.PI * 2;
+	// 		}
+
+	// 		moveCubeAnime(move, 60);
+	// 	}
+	// }
 
 	/**
 	 * 移动的魔方的动画
@@ -349,7 +424,7 @@ $(document).ready(function () {
 	 * 点击立方体的面
 	 */
 	function clickCubeFace(id) {
-		if (id == 6 || id == 9) showProductBox();
+		if (nowMovePos == 0) showProductBox();
 	}
 
 	/**
@@ -389,21 +464,23 @@ $(document).ready(function () {
 	 */
 	function showProductBox() {
 		productBox.show();
-		var time = 1500;
 		productBox.addClass("noPointer");
 		icom.fadeOut(animeBox, 500, function () {
-			items[0].addClass("wineMoveing3");
-			items[2].addClass("wineMoveing2");
-			items[1].addClass("wineMoveing1");
+			var red1 = productBox.find(".enterBox .red1");
+			var red2 = productBox.find(".enterBox .red2");
+			var silver = productBox.find(".enterBox .silver");
+			var black = productBox.find(".enterBox .black");
+			var point = productBox.find(".enterBox .point");
 
-			setTimeout(function () {
+			red1.show().addClass("wineMoveing1");
+			red2.show().addClass("wineMoveing2");
+			silver.addClass("wineMoveing3");
+			black.addClass("wineMoveing4");
+			
+			setTimeout(() => {
 				productBox.removeClass("noPointer");
-				icom.fadeIn(productBox.find(".point"));
-				icom.fadeIn(productBox.find(".tips"));
-				items[0].removeClass("wineMoveing3 hide");
-				items[2].removeClass("wineMoveing2 hide").hide();
-				items[1].removeClass("wineMoveing1 hide").hide();
-			}, 4500);
+				icom.fadeIn(point);
+			}, 2200);
 		});
 	}
 
@@ -487,8 +564,13 @@ $(document).ready(function () {
 	 * 显示更多页面
 	 */
 	function showMoreBox() {
-		moreBox.show();
-		icom.fadeOut(productBox);
+		if(showMoreFlag){
+			showMoreFlag = false;
+			moreBox.show();
+			productBox.transition({y:"-100%"},800,function(){
+				productBox.hide();
+			})
+		}
 	}
 
 	/**
@@ -506,9 +588,14 @@ $(document).ready(function () {
 			icom.fadeIn(box.find(".title"), 800);
 		});
 
+		if (videoPlayTimes == 3) productBox.find(".tips").hide();
+
 		setTimeout(function () {
 			productBox.removeClass("noPointer");
-			if (videoPlayTimes == 3) showMoreBox();
+			if (videoPlayTimes == 3) {
+				icom.fadeIn(productBox.find(".tips2"));
+				showMoreFlag = true;
+			}
 			else showNextPro();
 		}, 2000);
 	}
@@ -531,11 +618,10 @@ $(document).ready(function () {
 	/**
 	 * 播放视频
 	 */
-	function playVideo() {
-		var that = $(this).parents(".item");
+	function playVideo(e) {
+		var that = e.data.color == "red" ? items[0] : $(this).parents(".item");
 		var type = that.attr("data-val");
 		var pattern = videoBox.find(".pattern");
-		var tips = productBox.find(".tips_" + type);
 		var time = 0;
 
 		productBox.addClass("noPointer");
@@ -561,6 +647,12 @@ $(document).ready(function () {
 				if (!that.hasClass("act")) {
 					that.addClass("act");
 					videoPlayTimes++;
+				}
+
+				if(e.data.color == "red"){
+					productBox.find(".enterBox").hide();
+					productBox.find(".swiperBox").show();				
+					productBox.find(".tips").show();				
 				}
 			});
 
@@ -695,8 +787,9 @@ $(document).ready(function () {
 			onPlay: function () {
 				animeBox.show();
 				setTimeout(function () {
-					cubeBox.addClass("scaleing");
-					cubeRotate();
+					// cubeBox.addClass("scaleing");
+					// cubeRotate();
+					cubeAnimes[0].show().gifResume();
 				}, 4000);
 				Voice.anime.play();
 			},
@@ -729,7 +822,7 @@ $(document).ready(function () {
 	 */
 	function indexBoxShow() {
 		var logo = animeBox.find(".logo");
-		var tips = animeBox.find(".tips");
+		var tips = animeBox.find(".tips1");
 		var word = animeBox.find(".word");
 		var arrow = animeBox.find(".arrow");
 		var reasonTips = animeBox.find(".reasonTips");
