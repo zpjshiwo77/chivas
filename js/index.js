@@ -176,7 +176,11 @@ $(document).ready(function () {
 			loader.addImage('images/videoBox/red/pic' + i + '.jpg');
 			loader.addImage('images/videoBox/black/pic' + i + '.jpg');
 			loader.addImage('images/videoBox/silver/pic' + i + '.jpg');
-			loader.addImage('images/peopleBox/people/' + i + '.jpg');
+
+		}
+
+		for (var i = 1; i <= 41; i++) {
+			loader.addImage('images/peopleBox/peopleAnime/' + i + '.jpg');
 		}
 
 		//实际加载进度
@@ -386,18 +390,20 @@ $(document).ready(function () {
 	function showProductBox() {
 		productBox.show();
 		var time = 1500;
+		productBox.addClass("noPointer");
 		icom.fadeOut(animeBox, 500, function () {
-			items[0].transition({ x: "7.5rem" }, time, "linear", function () {
-				items[0].css({ x: "-7.5rem" })
-					.transition({ x: 0, delay: time }, time, "linear", function () {
-						icom.fadeIn(productBox.find(".point"));
-						icom.fadeIn(productBox.find(".tips"));
-					});
-			});
-			items[1].show().css({ x: "-7.5rem" })
-				.transition({ x: "7.5rem" }, time * 2, "linear");
-			items[2].show().css({ x: "-7.5rem" })
-				.transition({ x: "7.5rem", delay: time * 1 }, time * 2, "linear");
+			items[0].addClass("wineMoveing3");
+			items[2].addClass("wineMoveing2");
+			items[1].addClass("wineMoveing1");
+
+			setTimeout(function () {
+				productBox.removeClass("noPointer");
+				icom.fadeIn(productBox.find(".point"));
+				icom.fadeIn(productBox.find(".tips"));
+				items[0].removeClass("wineMoveing3 hide");
+				items[2].removeClass("wineMoveing2 hide").hide();
+				items[1].removeClass("wineMoveing1 hide").hide();
+			}, 4500);
 		});
 	}
 
@@ -455,26 +461,24 @@ $(document).ready(function () {
 
 			},
 			onEnd: function () {
-				
+
 			}
 		});
 
 		peopleAnime.VP({
 			debug: false,
 			autoPlay: true,
-			loop: false,
-			total: 70,
-			time: 4,
+			loop: true,
+			total: 41,
+			time: 2,
 			type: 'jpg',
-			poster: "images/peopleBox/people/1.jpg",
-			path: "images/peopleBox/people/",
+			poster: "images/peopleBox/peopleAnime/1.jpg",
+			path: "images/peopleBox/peopleAnime/",
 			onPlay: function () {
 
 			},
 			onEnd: function () {
-				setTimeout(function () {
-					peopleAnime.gotoAndPlay(0);
-				}, 1500);
+
 			}
 		});
 	}
