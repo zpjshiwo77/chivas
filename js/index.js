@@ -828,7 +828,8 @@ $(document).ready(function () {
 		var reasonTips = animeBox.find(".reasonTips");
 
 		icom.fadeIn(logo);
-		icom.fadeIn(tips);
+		// icom.fadeIn(tips);
+		tips.addClass("blasting");
 		setTimeout(function () {
 			icom.fadeIn(word);
 		}, 500);
