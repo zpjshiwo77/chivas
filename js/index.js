@@ -183,7 +183,14 @@ $(document).ready(function () {
 			loader.addImage('images/videoBox/red/pic' + i + '.jpg');
 			loader.addImage('images/videoBox/black/pic' + i + '.jpg');
 			loader.addImage('images/videoBox/silver/pic' + i + '.jpg');
+		}
 
+		for (var i = 0; i < 30; i++) {
+			if(i<24) loader.addImage('images/animeBox/cube/1/' + i + '.png');
+			if(i<27) loader.addImage('images/animeBox/cube/2/' + i + '.png');
+			if(i<26) loader.addImage('images/animeBox/cube/3/' + i + '.png');
+			if(i<21) loader.addImage('images/animeBox/cube/4/' + i + '.png');
+			if(i<27) loader.addImage('images/animeBox/cube/6/' + i + '.png');
 		}
 
 		for (var i = 1; i <= 41; i++) {
@@ -316,7 +323,7 @@ $(document).ready(function () {
 	 * 魔方动画初始化
 	 */
 	function cubeAnimesInit(){
-		var nums = [0,24,27,26,21,26];
+		var nums = [0,24,27,26,21,27];
 		for (var i = 1; i <= 5; i++) {
 			var anime = $("#anime"+i);
 			gifInit(anime,nums[i],i);
@@ -329,10 +336,10 @@ $(document).ready(function () {
 	 */
 	function gifInit(anime,num,i){
 		anime.gifOn({
-			path:"images/animeBox/cube/"+i+"/",
+			path:"images/animeBox/cube/"+(i == 5 ? i + 1 : i)+"/",
 			type:"image",
 			num: num,
-			speed: 60,
+			speed: i == 1 ? 60 : 30,
 			pause: true,
 			repeat: 9999,
 			onComplete: function(){
@@ -455,7 +462,7 @@ $(document).ready(function () {
 			wx.miniProgram.navigateTo({ url: '/pages/jd2/jd2' })
 		}
 		else {
-			location.replace("https://chivasb20phase2.pernod-ricard-china.com/sale.html");
+			location.replace("https://chivasb20phase2.pernod-ricard-china.com/lecode/sale.html");
 		}
 	}
 
