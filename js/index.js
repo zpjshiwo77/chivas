@@ -18,6 +18,7 @@ $(document).ready(function () {
 			if (os.screenProp > 0.62) articleBox.addClass("screen159");
 			load_handler();
 			sound_handler();
+			SendMonitor();
 		});
 		// var shareInfo = {
 		// 	title:"品味不凡，不止一面",
@@ -26,6 +27,17 @@ $(document).ready(function () {
 		// }
 		// wxUser.init({shareInfo:shareInfo});
 	}//edn func
+
+	/**
+	 * 发送监测
+	 */
+	function SendMonitor(){
+		var data = {
+			mot: icom.getQueryString("hmsr") || "default",
+			MiniOpenID: icom.getQueryString("openid") || "default"
+		}
+		API.NweAddChivasUser(data,null);
+	}
 
 	function sound_handler() {
 		if (os.weixin) {
@@ -437,6 +449,7 @@ $(document).ready(function () {
 	 */
 	function clickCubeFace(id) {
 		if (nowMovePos == 0) showProductBox();
+		imonitor.add({action:'touchstart',category:'default',label:'点击魔方'+nowMovePos});
 	}
 
 	/**
@@ -456,6 +469,8 @@ $(document).ready(function () {
 			setTimeout(function () {
 				icom.fadeIn(btn);
 			}, 500)
+
+			imonitor.add({action:'touchstart',category:'default',label:'擦酒瓶'});
 		}
 	}
 
@@ -463,11 +478,13 @@ $(document).ready(function () {
 	 * 跳转其他链接
 	 */
 	function jumpOther() {
+		imonitor.add({action:'page',category:'page',label:'告知渠道与奖励机制，引流京东'});
 		if (window.__wxjs_environment === 'miniprogram') {
 			wx.miniProgram.navigateTo({ url: '/pages/jd2/jd2' })
 		}
 		else {
-			location.replace("https://chivasb20phase2.pernod-ricard-china.com/lecode/sale.html");
+			var param = location.search;
+			location.replace("https://chivasb20phase2.pernod-ricard-china.com/lecode/sale.html"+param);
 		}
 	}
 
@@ -493,6 +510,8 @@ $(document).ready(function () {
 				productBox.removeClass("noPointer");
 				icom.fadeIn(point);
 			}, 2200);
+
+			imonitor.add({action:'page',category:'page',label:'进入立体互动空间'});
 		});
 	}
 
@@ -518,6 +537,7 @@ $(document).ready(function () {
 		introBox.show();
 		icom.fadeOut(wineBox);
 		// if(os.android) introBox.find(".cover").hide();
+		imonitor.add({action:'page',category:'page',label:'左滑观看le视频&call for action'});
 	}
 
 	/**
@@ -528,6 +548,7 @@ $(document).ready(function () {
 		icom.fadeOut(peopleBox);
 		peopleAnime.destroy();
 		wineAnime.destroy();
+		imonitor.add({action:'page',category:'page',label:'讲述KW与大师调和不凡品味，擦屏互动揭晓'});
 	}
 
 	/**
@@ -570,6 +591,7 @@ $(document).ready(function () {
 				showWineBox();
 			}
 		});
+		imonitor.add({action:'page',category:'page',label:'介绍与kw灵感碰撞的芝华士大师sandy'});
 	}
 
 	/**
@@ -582,6 +604,7 @@ $(document).ready(function () {
 			productBox.transition({ y: "-100%" }, 800, function () {
 				productBox.hide();
 			})
+			imonitor.add({action:'page',category:'page',label:'更多调和故事页面'});
 		}
 	}
 
@@ -691,6 +714,9 @@ $(document).ready(function () {
 				}
 			});
 		}, time);
+
+		imonitor.add({action:'touchstart',category:'default',label:'点击酒瓶'+type});
+		imonitor.add({action:'page',category:'page',label:'了解对应KW潮流身份特质'+type});
 	}
 
 	/**
@@ -802,8 +828,10 @@ $(document).ready(function () {
 					// cubeBox.addClass("scaleing");
 					// cubeRotate();
 					cubeAnimes[0].show().gifResume();
+					imonitor.add({action:'page',category:'page',label:'动效通道进入'});
 				}, 4000);
 				Voice.anime.play();
+				imonitor.add({action:'page',category:'page',label:'吴亦凡Join us video'});
 			},
 			onEnd: function () {
 				animeBg.destroy();
@@ -850,6 +878,7 @@ $(document).ready(function () {
 
 		icom.fadeOut(animeBg);
 		cubeBox.removeClass("noPointer");
+		imonitor.add({action:'page',category:'page',label:'不凡空间魔方出现'});
 	}
 
 	/**
@@ -887,6 +916,8 @@ $(document).ready(function () {
 
 	//----------------------------------------页面监测代码----------------------------------------
 	function monitor_handler() {
-		//		imonitor.add({obj:$('a.btnTest'),action:'touchstart',category:'default',label:'测试按钮'});
+		imonitor.add({obj:moreBox.find(".btn"),action:'touchstart',category:'default',label:'了解更多调和故事'});
+		imonitor.add({obj:wineBox.find(".btn"),action:'touchstart',category:'default',label:'观看视频'});
+		imonitor.add({obj:introBox.find(".btn"),action:'touchstart',category:'default',label:'get不凡限量全攻略'});
 	}//end func
 });//end ready

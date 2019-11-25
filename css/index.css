@@ -826,6 +826,7 @@ img {
 /*---------------------------------------- 18:9 ----------------------*/
 .screen189 #cubeBox {
 	top: -2rem;
+	transform: scale(1,1);
 }
 .screen189 #peopleBox .word{
 	transform: translate(-2.92rem, 2.3rem);

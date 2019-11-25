@@ -1,12 +1,12 @@
 //2019.01.23
 //百度监测贴这里
-//var _hmt = _hmt || [];
-//(function() {
-//var hm = document.createElement("script");
-//hm.src = "https://hm.baidu.com/hm.js?42b71e30fab1dd283c8d6f451a4c011b";
-//var s = document.getElementsByTagName("script")[0]; 
-//s.parentNode.insertBefore(hm, s);
-//})();
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5f0c4df8f4c1161ca7475bdead0ac537";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
 
 var imonitor = importMonitor();
 imonitor.add({action:'loading',category:'default',label:'loading'});
