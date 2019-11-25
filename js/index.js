@@ -186,11 +186,11 @@ $(document).ready(function () {
 		}
 
 		for (var i = 0; i < 30; i++) {
-			if(i<24) loader.addImage('images/animeBox/cube/1/' + i + '.png');
-			if(i<27) loader.addImage('images/animeBox/cube/2/' + i + '.png');
-			if(i<26) loader.addImage('images/animeBox/cube/3/' + i + '.png');
-			if(i<21) loader.addImage('images/animeBox/cube/4/' + i + '.png');
-			if(i<27) loader.addImage('images/animeBox/cube/6/' + i + '.png');
+			if (i < 23) loader.addImage('images/animeBox/cube/7/' + i + '.png');
+			if (i < 27) loader.addImage('images/animeBox/cube/8/' + i + '.png');
+			if (i < 27) loader.addImage('images/animeBox/cube/9/' + i + '.png');
+			if (i < 22) loader.addImage('images/animeBox/cube/10/' + i + '.png');
+			if (i < 29) loader.addImage('images/animeBox/cube/11/' + i + '.png');
 		}
 
 		for (var i = 1; i <= 41; i++) {
@@ -238,7 +238,7 @@ $(document).ready(function () {
 	var animeBg = $("#animeBg");
 	var tipsBox = $("#tipsBox");
 	var privacyBox = $("#privacyBox");
-	
+
 	var ruleScroll = new IScroll('#ruleScroll', {
 		bounce: false,
 		click: true
@@ -300,8 +300,8 @@ $(document).ready(function () {
 		// cubeBox.on('touchstart', this_touchstart);
 		cubeBox.on('click', clickCubeFace);
 
-		productBox.find(".itemClick").on("click",{color:"x"}, playVideo);
-		productBox.find(".enterBox").on("click",{color:"red"} ,playVideo);
+		productBox.find(".itemClick").on("click", { color: "x" }, playVideo);
+		productBox.find(".enterBox").on("click", { color: "red" }, playVideo);
 		productBox.on("touchmove", showMoreBox);
 
 		moreBox.find(".btn").on("touchend", showPeopleBox);
@@ -322,28 +322,28 @@ $(document).ready(function () {
 	/**
 	 * 魔方动画初始化
 	 */
-	function cubeAnimesInit(){
-		var nums = [0,24,27,26,21,27];
+	function cubeAnimesInit() {
+		var nums = [0, 23, 27, 27, 22, 29];
 		for (var i = 1; i <= 5; i++) {
-			var anime = $("#anime"+i);
-			gifInit(anime,nums[i],i);
-			cubeAnimes.push(anime);			
+			var anime = $("#anime" + i);
+			gifInit(anime, nums[i], i);
+			cubeAnimes.push(anime);
 		}
 	}
 
 	/**
 	 * gif初始化
 	 */
-	function gifInit(anime,num,i){
+	function gifInit(anime, num, i) {
 		anime.gifOn({
-			path:"images/animeBox/cube/"+(i == 5 ? i + 1 : i)+"/",
-			type:"image",
+			path: "images/animeBox/cube/" + (i + 6) + "/",
+			type: "image",
 			num: num,
 			speed: i == 1 ? 60 : 30,
 			pause: true,
 			repeat: 9999,
-			onComplete: function(){
-				anime.gifGoto(num-1);
+			onComplete: function () {
+				anime.gifGoto(num - 1);
 			}
 		});
 	}
@@ -358,23 +358,28 @@ $(document).ready(function () {
 				cubeAnimes[0].hide();
 				cubeAnimes[1].show().gifResume();
 				nowMovePos = dealIndex(nowMovePos + 1);
-				icom.fadeOut(animeBox.find(".tips1"));		
-				icom.fadeIn(animeBox.find(".tips2"));	
-				setTimeout(function(){
+				icom.fadeOut(animeBox.find(".tips1"));
+				icom.fadeIn(animeBox.find(".tips2"));
+				setTimeout(function () {
 					cubeAnimes[1].hide();
 					cubeAnimes[2].show();
-				}, 1300);	
+				}, 1300);
 			}
 			else {
 				var now = cubeAnimes[nowMovePos + 2];
 				nowMovePos = dealIndex(nowMovePos + 1);
 				var next = cubeAnimes[nowMovePos + 2];
 				now.gifResume();
+				var tips = animeBox.find(".tips3");
+				tips.hide();
+				setTimeout(function () {
+					if (nowMovePos != 0) tips.show();
+				}, 750);
 			}
 
-			setTimeout(function(){
+			setTimeout(function () {
 				moveCubeFlag = true;
-				if(now){
+				if (now) {
 					now.hide().gifGoto(0);
 					next.show();
 				}
@@ -483,7 +488,7 @@ $(document).ready(function () {
 			red2.show().addClass("wineMoveing2");
 			silver.addClass("wineMoveing3");
 			black.addClass("wineMoveing4");
-			
+
 			setTimeout(() => {
 				productBox.removeClass("noPointer");
 				icom.fadeIn(point);
@@ -552,7 +557,7 @@ $(document).ready(function () {
 		peopleAnime.VP({
 			debug: false,
 			autoPlay: true,
-			loop: true,
+			loop: false,
 			total: 41,
 			time: 2,
 			type: 'jpg',
@@ -562,7 +567,7 @@ $(document).ready(function () {
 
 			},
 			onEnd: function () {
-
+				showWineBox();
 			}
 		});
 	}
@@ -571,10 +576,10 @@ $(document).ready(function () {
 	 * 显示更多页面
 	 */
 	function showMoreBox() {
-		if(showMoreFlag){
+		if (showMoreFlag) {
 			showMoreFlag = false;
 			moreBox.show();
-			productBox.transition({y:"-100%"},800,function(){
+			productBox.transition({ y: "-100%" }, 800, function () {
 				productBox.hide();
 			})
 		}
@@ -656,10 +661,10 @@ $(document).ready(function () {
 					videoPlayTimes++;
 				}
 
-				if(e.data.color == "red"){
+				if (e.data.color == "red") {
 					productBox.find(".enterBox").hide();
-					productBox.find(".swiperBox").show();				
-					productBox.find(".tips").show();				
+					productBox.find(".swiperBox").show();
+					productBox.find(".tips").show();
 				}
 			});
 

@@ -249,6 +249,15 @@ img {
 	margin-top: -4.4rem;
 }
 
+#animeBox .cont .tips3 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 3.92rem;
+	margin-left: -1.96rem;
+	margin-top: -2rem;
+}
+
 #cubeBox {
 	position: absolute;
 	top: -1.5rem;
@@ -731,16 +740,16 @@ img {
 	position: absolute;
 	top: 6.1rem;
 	left: 50%;
-	width: 5.15rem;
-	margin-left: -2.575rem;
+	width: 5.16rem;
+	margin-left: -2.58rem;
 }
 #introBox .btn {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
-	width: 3.57rem;
+	width: 3.74rem;
 	height: 0.54rem;
-	margin-left: -1.785rem;
+	margin-left: -1.87rem;
 }
 /* introBox end */
 
