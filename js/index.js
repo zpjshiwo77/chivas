@@ -198,11 +198,11 @@ $(document).ready(function () {
 		}
 
 		for (var i = 0; i < 30; i++) {
-			if (i < 23) loader.addImage('images/animeBox/cube/7/' + i + '.png');
-			if (i < 27) loader.addImage('images/animeBox/cube/8/' + i + '.png');
-			if (i < 27) loader.addImage('images/animeBox/cube/9/' + i + '.png');
-			if (i < 22) loader.addImage('images/animeBox/cube/10/' + i + '.png');
-			if (i < 29) loader.addImage('images/animeBox/cube/11/' + i + '.png');
+			if (i < 24) loader.addImage('images/animeBox/cube/12/' + i + '.png');
+			if (i < 27) loader.addImage('images/animeBox/cube/13/' + i + '.png');
+			if (i < 27) loader.addImage('images/animeBox/cube/14/' + i + '.png');
+			if (i < 22) loader.addImage('images/animeBox/cube/15/' + i + '.png');
+			if (i < 27) loader.addImage('images/animeBox/cube/16/' + i + '.png');
 		}
 
 		for (var i = 1; i <= 41; i++) {
@@ -335,7 +335,7 @@ $(document).ready(function () {
 	 * 魔方动画初始化
 	 */
 	function cubeAnimesInit() {
-		var nums = [0, 23, 27, 27, 22, 29];
+		var nums = [0, 22, 27, 27, 22, 27];
 		for (var i = 1; i <= 5; i++) {
 			var anime = $("#anime" + i);
 			gifInit(anime, nums[i], i);
@@ -348,7 +348,7 @@ $(document).ready(function () {
 	 */
 	function gifInit(anime, num, i) {
 		anime.gifOn({
-			path: "images/animeBox/cube/" + (i + 6) + "/",
+			path: "images/animeBox/cube/" + (i + 11) + "/",
 			type: "image",
 			num: num,
 			speed: i == 1 ? 60 : 30,
@@ -385,7 +385,7 @@ $(document).ready(function () {
 				var tips = animeBox.find(".tips3");
 				tips.hide();
 				setTimeout(function () {
-					if (nowMovePos != 0) tips.show();
+					if (nowMovePos != 0 && nowMovePos != 1) tips.show();
 				}, 750);
 			}
 
@@ -449,6 +449,7 @@ $(document).ready(function () {
 	 */
 	function clickCubeFace(id) {
 		if (nowMovePos == 0) showProductBox();
+		else if(nowMovePos == 1) location.replace("https://chivasb20phase2.pernod-ricard-china.com/second_tidal/");
 		imonitor.add({action:'touchstart',category:'default',label:'点击魔方'+nowMovePos});
 	}
 
