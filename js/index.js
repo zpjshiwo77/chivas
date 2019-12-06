@@ -449,7 +449,10 @@ $(document).ready(function () {
 	 */
 	function clickCubeFace(id) {
 		if (nowMovePos == 0) showProductBox();
-		else if(nowMovePos == 1) location.replace("https://chivasb20phase2.pernod-ricard-china.com/second_tidal/");
+		else if(nowMovePos == 1) {
+			var param = location.search;
+			location.replace("https://chivasb20phase2.pernod-ricard-china.com/stage3/"+param);
+		}
 		imonitor.add({action:'touchstart',category:'default',label:'点击魔方'+nowMovePos});
 	}
 
