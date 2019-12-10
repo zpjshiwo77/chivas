@@ -396,6 +396,8 @@ $(document).ready(function () {
 					next.show();
 				}
 			}, 1300);
+
+			stm_clicki('send', 'event', '魔方页面', '转动魔方', 'button')
 		}
 	}
 
@@ -452,6 +454,7 @@ $(document).ready(function () {
 		else if(nowMovePos == 1) {
 			var param = location.search;
 			location.replace("https://chivasb20phase2.pernod-ricard-china.com/stage3/"+param);
+			stm_clicki('send', 'event', '魔方页面', '点击进入', 'button');
 		}
 		imonitor.add({action:'touchstart',category:'default',label:'点击魔方'+nowMovePos});
 	}

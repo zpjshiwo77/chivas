@@ -8,6 +8,15 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 
+(function(a, e, f, g, b, c, d) {
+	a.ClickiTrackerName = b;
+	a[b] = a[b] || function() {(a[b].queue = a[b].queue || []).push(arguments)};
+	a[b].start = +new Date; c = e.createElement(f); d = e.getElementsByTagName(f)[0];
+	c.async = 1; c.src = g; d.parentNode.insertBefore(c, d)
+   })(window, document, 'script', '//stm-cdn.cn.miaozhen.com/clicki.min.js?v='+Math.round(new Date().getTime()/1000/300), 'stm_clicki');
+   stm_clicki('create', 'dc-3508', 'auto');
+   stm_clicki('send', 'pageview');
+
 var imonitor = importMonitor();
 imonitor.add({action:'loading',category:'default',label:'loading'});
 function importMonitor() {
