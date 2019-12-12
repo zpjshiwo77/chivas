@@ -14,6 +14,10 @@ $(document).ready(function () {
 
 	function init() {
 		requestAnimationFrame(function () {
+			if(icom.getQueryString("page") == "huo") {
+				var param = location.search;
+				location.replace("https://chivasb20phase2.pernod-ricard-china.com/stage3/"+param);
+			}
 			if (os.screenProp < 0.54) articleBox.addClass("screen189");
 			if (os.screenProp > 0.62) articleBox.addClass("screen159");
 			load_handler();
